@@ -12,6 +12,8 @@ import { FooterComponent } from '@standalone/components/footer/footer.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeFacade } from '@home/home.facade';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeEffects } from '@store/home/home.effects';
+import { NftListResolver } from '@home/resolvers/nft-list.resolver';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -25,10 +27,10 @@ const imports: any[] = [
 
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),
-  EffectsModule.forRoot([]),
+  EffectsModule.forRoot([HomeEffects]),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 ];
-const providers: any[] = [HomeFacade];
+const providers: any[] = [HomeFacade, NftListResolver];
 
 @NgModule({
   declarations,

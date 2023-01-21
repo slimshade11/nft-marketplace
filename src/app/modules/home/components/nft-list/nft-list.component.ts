@@ -1,10 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { NFT } from '@home/models/nft.model';
+import { ActivatedRoute, Data } from '@angular/router';
+import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 
 @Component({
   selector: 'nftm-nft-list',
-  templateUrl: './nft-list.component.html',
-  styleUrls: ['./nft-list.component.scss']
+  template: `
+    <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+      <ng-container *ngFor="let nft of nftList$ | async as nftList">
+        <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+          <nftm-nft-item></nftm-nft-item>
+        </div>
+      </ng-container>
+    </div>
+  `,
 })
-export class NftListComponent {
+export class NftListComponent extends DestroyComponent implements OnInit {
+  nftList$!: Observable<NFT[]>;
 
+  constructor(private activatedRoute: ActivatedRoute) {
+    super();
+  }
+
+  ngOnInit(): void {
+    this.nftList$ = this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
+  }
 }
