@@ -26,7 +26,8 @@
       "@constants/*": ["src/app/common/constants/*"],
       "@enums/*": ["src/app/common/enums/*"],
       "@services/*": ["src/app/common/services/*"],
-      "@standalone/*": ["src/app/standalone/*"]
+      "@standalone/*": ["src/app/standalone/*"],
+      "@store/*": ["src/app/store/*"]
     }
   },
   "angularCompilerOptions": {
