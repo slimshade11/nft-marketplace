@@ -29,7 +29,9 @@
       "@models/*": ["src/app/common/models/*"],
       "@standalone/*": ["src/app/standalone/*"],
       "@store/*": ["src/app/store/*"],
-      "@home/*": ["src/app/modules/home/*"]
+      "@home/*": ["src/app/modules/home/*"],
+      "@create/*": ["src/app/modules/create/*"],
+      "@profile/*": ["src/app/modules/profile/*"]
     }
   },
   "angularCompilerOptions": {

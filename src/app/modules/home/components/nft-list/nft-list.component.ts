@@ -7,12 +7,12 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
 @Component({
   selector: 'nftm-nft-list',
   template: `
-    <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-      <ng-container *ngFor="let nft of nftList$ | async as nftList">
-        <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-          <nftm-nft-item></nftm-nft-item>
-        </div>
-      </ng-container>
+    <div class="mt-12 mx-auto grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
+      <div
+        *ngFor="let nft of nftList$ | async as nftList"
+        class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+        <nftm-nft-item [nft]="nft"></nftm-nft-item>
+      </div>
     </div>
   `,
 })

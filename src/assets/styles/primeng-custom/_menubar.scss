@@ -1,0 +1,18 @@
+p-menubar {
+  .p-menuitem {
+    border-radius: 0.25rem;
+
+    &-link {
+      box-shadow: none !important;
+    }
+  }
+
+  .p-menuitem-link-active,
+  .p-menuitem:hover {
+    background-color: #777;
+
+    .p-menuitem-text {
+      color: #fff !important;
+    }
+  }
+}

@@ -26,12 +26,15 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/luna-blue/theme.css",
+              "node_modules/primeng/resources/themes/bootstrap4-dark-purple/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/assets/styles/tailwind/tailwind.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["./src/assets/styles/"]
+            }
           },
           "configurations": {
             "production": {
