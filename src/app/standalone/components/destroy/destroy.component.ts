@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-destroy',
+  selector: 'nftm-destroy',
   template: '',
   standalone: true,
 })
