@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HomeRoutingModule } from '@home/home-routing.module';
+import { HomeViewComponent } from '@home/home-view/home-view.component';
+import { NftListComponent } from '@home/components/nft-list/nft-list.component';
+import { NftItemComponent } from '@home/components/nft-item/nft-item.component';
+import { PRIMENG_UI } from '@primeng-ui/primeng-ui';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeViewComponent } from './home-view/home-view.component';
+const declarations: any[] = [HomeViewComponent, NftListComponent, NftItemComponent];
+const imports: any[] = [CommonModule, HomeRoutingModule, ...PRIMENG_UI];
 
-
-@NgModule({
-  declarations: [
-    HomeViewComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule
-  ]
-})
-export class HomeModule { }
+@NgModule({ declarations, imports })
+export class HomeModule {}

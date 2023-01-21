@@ -1,5 +1,5 @@
 import { MenuService } from '@services/menu.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PRIMENG_UI } from '@primeng-ui/primeng-ui';
 import { MenuItem } from 'primeng/api';
@@ -8,6 +8,7 @@ import { MenuItem } from 'primeng/api';
   selector: 'nftm-navbar',
   standalone: true,
   imports: [CommonModule, ...PRIMENG_UI],
+  providers: [MenuService],
   template: `
     <div class="py-3 md:hidden">
       <p-menu
@@ -33,11 +34,11 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavbarComponent implements OnInit {
   public links!: MenuItem[];
-  private logged = false;
+  private isLoggedIn = false;
 
-  constructor(private menuService: MenuService) {}
+  constructor(@Self() private menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.links = this.menuService.setMenuLinks(this.logged);
+    this.links = this.menuService.setMenuLinks(this.isLoggedIn);
   }
 }

@@ -26,6 +26,7 @@
       "@constants/*": ["src/app/common/constants/*"],
       "@enums/*": ["src/app/common/enums/*"],
       "@services/*": ["src/app/common/services/*"],
+      "@models/*": ["src/app/common/models/*"],
       "@standalone/*": ["src/app/standalone/*"],
       "@store/*": ["src/app/store/*"],
       "@home/*": ["src/app/modules/home/*"]

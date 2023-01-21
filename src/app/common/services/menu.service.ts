@@ -1,14 +1,13 @@
 import { MenuItem } from 'primeng/api';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MenuService {
-  public setMenuLinks(logged: boolean): MenuItem[] {
+  public setMenuLinks(isLoggedIn: boolean): MenuItem[] {
     const links: MenuItem[] = [
       {
         label: 'Dashboard',
+        routerLink: 'home',
         icon: 'pi pi-fw pi-home',
         visible: true,
       },
