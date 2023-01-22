@@ -1,7 +1,7 @@
 import { ActivatedRoute, Data } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { NFT } from '@app/modules/home/models/nft.model';
+import { NFT } from '@home/models/nft.model';
 
 @Component({
   selector: 'nftm-profile-view',

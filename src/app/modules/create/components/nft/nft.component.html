@@ -12,10 +12,12 @@
         type="text"
         class="w-full rounded-md p-3"
         placeholder="Name"
+        formControlName="name"
         pInputText />
       <textarea
         class="w-full rounded-md mt-5 p-3"
         placeholder="Description"
+        formControlName="description"
         pInputTextarea></textarea>
       <small class="text-gray-500">Brief description of NFT</small>
       <div class="h-[250px] rounded-md flex items-center justify-center mt-8 upload">
@@ -37,18 +39,21 @@
           type="text"
           class="w-full rounded-md p-3"
           placeholder="Health"
+          formControlName="health"
           pInputText />
         <input
           id="attack"
           type="text"
           class="w-full rounded-md p-3"
           placeholder="Attack"
+          formControlName="attack"
           pInputText />
         <input
           id="speed"
           type="text"
           class="w-full rounded-md p-3"
           placeholder="Speed"
+          formControlName="speed"
           pInputText />
       </div>
       <div class="flex justify-end mt-8">

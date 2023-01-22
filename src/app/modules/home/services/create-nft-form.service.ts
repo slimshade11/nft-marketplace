@@ -1,11 +1,9 @@
 import { CreateNftForm } from '@home/models/create-nft-form.model';
 import { Injectable } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { FormService } from '@services/form.service';
+import { FormService } from '@common_services/form.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CreateNftFormService extends FormService {
   constructor() {
     super();

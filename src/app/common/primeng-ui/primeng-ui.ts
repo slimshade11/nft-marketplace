@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RippleModule } from 'primeng/ripple';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
 
 export const PRIMENG_UI: any[] = [
   ButtonModule,
@@ -22,4 +23,5 @@ export const PRIMENG_UI: any[] = [
   InputTextareaModule,
   RippleModule,
   FileUploadModule,
+  ToastModule,
 ];

@@ -1,6 +1,5 @@
-import { MenuItem } from 'primeng/api';
 import { Injectable } from '@angular/core';
-import { MenuLinks } from '@models/menu-links.model';
+import { MenuLinks } from '@common_models/menu-links.model';
 
 @Injectable()
 export class MenuService {

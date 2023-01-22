@@ -35,7 +35,9 @@
                   pButton
                   pRipple
                   class="h-[200px] p-0 flex">
-                  <img [src]="nft.image" />
+                  <img
+                    [src]="nft.image"
+                    class="h-full object-cover" />
                 </button>
 
                 <p class="mt-2 block text-sm font-medium truncate pointer-events-none">{{ nft.name }}</p>

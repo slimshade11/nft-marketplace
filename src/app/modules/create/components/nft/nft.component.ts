@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { CreateNftForm } from '@home/models/create-nft-form.model';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -15,11 +14,15 @@ export class NftComponent {
 
   constructor(private homeFacade: HomeFacade) {}
 
-  public onNftUpload(e: any): void {
-    console.log(e);
+  public onNftUpload(event: any): void {
+    console.log(event);
   }
 
-  public onSubmit(form: any): void {
-    console.log(form.value);
+  public onSubmit(form: FormGroup<CreateNftForm>): void {
+    console.log(form);
+    if (!form.valid) {
+      form.markAsPristine();
+      return;
+    }
   }
 }

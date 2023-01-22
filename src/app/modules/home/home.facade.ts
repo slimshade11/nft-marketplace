@@ -3,7 +3,7 @@ import { HomeService } from '@home/services/home.service';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
-import { HomeActions, HomeSelectors } from '@app/store/home';
+import { HomeActions, HomeSelectors } from '@store/home';
 import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { NFT } from '@home/models/nft.model';
 import { FormGroup } from '@angular/forms';
@@ -24,13 +24,13 @@ export class HomeFacade {
   }
 
   // NgRx Action Dispatchers //
-  dispatchGetNftListAction(): void {
+  public dispatchGetNftListAction(): void {
     this.store.dispatch(HomeActions.getNftList());
   }
   // NgRx Action Dispatchers end //
 
   // NgRx Selectors //
-  getNftList$(): Observable<NFT[] | null> {
+  public getNftList$(): Observable<NFT[] | null> {
     return this.store.select(HomeSelectors.nftList);
   }
   // NgRx Selectors end //
@@ -41,11 +41,11 @@ export class HomeFacade {
       ofType(HomeActions.getNftList),
       switchMap(() => {
         return this.homeService.getNftList$().pipe(
-          map((nftList) => {
+          map((nftList: NFT[]) => {
             return HomeActions.getNftListSuccess({ nftList });
           }),
-          catchError((err) => {
-            return of(HomeActions.getNftListFailure);
+          catchError(() => {
+            return of(HomeActions.getNftListFailure());
           })
         );
       })

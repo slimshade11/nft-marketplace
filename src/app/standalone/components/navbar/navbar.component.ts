@@ -1,10 +1,10 @@
-import { MenuService } from '@services/menu.service';
+import { MenuService } from '@common_services/menu.service';
+import { PRIMENG_UI } from '@common_primeng-ui/primeng-ui';
+import { MenuLinks } from '@common_models/menu-links.model';
+import { MenuType } from '@common_enums/menu-type.enum';
 import { Component, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PRIMENG_UI } from '@primeng-ui/primeng-ui';
 import { Router } from '@angular/router';
-import { MenuLinks } from '@models/menu-links.model';
-import { MenuType } from '@app/common/enums/menu-type.enum';
 
 @Component({
   selector: 'nftm-navbar',
