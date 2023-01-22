@@ -4,7 +4,6 @@ import { MenuLinks } from '@common_models/menu-links.model';
 import { MenuType } from '@common_enums/menu-type.enum';
 import { Component, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'nftm-navbar',
@@ -13,13 +12,12 @@ import { Router } from '@angular/router';
   providers: [MenuService],
   template: `
     <div class="p-3">
-      <p-menubar [model]="links[menuTypes.DASHBOARD]">
+      <p-menubar [model]="links[menuType.DASHBOARD]">
         <p-menu
           #menu
-          [model]="links[menuTypes.PROFILE]"
+          [model]="links[menuType.PROFILE]"
           [popup]="true">
         </p-menu>
-
         <div class="flex items-center">
           <div class="mr-5 cursor-pointer">
             <i
@@ -38,11 +36,10 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   public links!: MenuLinks;
-  public menuTypes = MenuType;
-  public notificationAmount = 12;
-  private isLoggedIn = false;
+  public menuType = MenuType;
+  private isLoggedIn = true;
 
-  constructor(@Self() private menuService: MenuService, private router: Router) {}
+  constructor(@Self() private menuService: MenuService) {}
 
   ngOnInit(): void {
     this.links = this.menuService.setMenuLinks(this.isLoggedIn);

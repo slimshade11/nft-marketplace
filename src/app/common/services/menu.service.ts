@@ -10,15 +10,13 @@ export class MenuService {
           label: 'Marketplace',
           routerLink: '/',
           icon: 'pi pi-fw pi-home',
-          visible: true,
-          styleClass: 'mr-2',
+          styleClass: 'lg:mr-2',
           routerLinkActiveOptions: { exact: true },
         },
         {
           label: 'Create',
           routerLink: '/create/nft',
           icon: 'pi pi-fw pi-user',
-          visible: true,
         },
       ],
       profile: [
@@ -26,7 +24,7 @@ export class MenuService {
           label: 'Profile',
           routerLink: '/profile',
           icon: 'pi pi-fw pi-user',
-          visible: true,
+          visible: isLoggedIn,
         },
       ],
     };

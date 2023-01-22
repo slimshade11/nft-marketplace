@@ -5,7 +5,7 @@ import { PrimeNGConfig } from 'primeng/api';
   selector: 'app-root',
   template: `
     <nftm-navbar></nftm-navbar>
-    <div class="px-3 max-w-screen-xl mx-auto">
+    <div class="max-w-screen-xl px-3 mx-auto ">
       <router-outlet></router-outlet>
     </div>
     <nftm-footer></nftm-footer>
