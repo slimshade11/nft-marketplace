@@ -1,1 +1,63 @@
-<p>nft works!</p>
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-[40%]">
+    <div>Do you have meta data already?</div>
+  </div>
+  <div class="w-full lg:w-[60%] pt-8">
+    <form
+      *ngIf="form$ | async as form"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit(form)">
+      <input
+        id="name"
+        type="text"
+        class="w-full rounded-md p-3"
+        placeholder="Name"
+        pInputText />
+      <textarea
+        class="w-full rounded-md mt-5 p-3"
+        placeholder="Description"
+        pInputTextarea></textarea>
+      <small class="text-gray-500">Brief description of NFT</small>
+      <div class="h-[250px] rounded-md flex items-center justify-center mt-8 upload">
+        <div class="flex flex-col items-center">
+          <i class="pi pi-image text-stone-300 text-3xl"></i>
+          <span class="text-stone-300">Upload a file</span>
+          <p-fileUpload
+            (onUpload)="onNftUpload($event)"
+            [auto]="true"
+            mode="basic"
+            name="demo[]"
+            url="./upload.php"
+            class="mt-4"></p-fileUpload>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <input
+          id="health"
+          type="text"
+          class="w-full rounded-md p-3"
+          placeholder="Health"
+          pInputText />
+        <input
+          id="attack"
+          type="text"
+          class="w-full rounded-md p-3"
+          placeholder="Attack"
+          pInputText />
+        <input
+          id="speed"
+          type="text"
+          class="w-full rounded-md p-3"
+          placeholder="Speed"
+          pInputText />
+      </div>
+      <div class="flex justify-end mt-8">
+        <button
+          class="px-8 text-white"
+          type="submit"
+          label="Save"
+          pButton></button>
+      </div>
+    </form>
+  </div>
+</div>

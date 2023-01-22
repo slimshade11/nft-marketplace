@@ -22,6 +22,9 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: (): Promise<any> =>
       import('@profile/profile.module').then(({ ProfileModule }): ProfileModule => ProfileModule),
+    resolve: {
+      nftList: NftListResolver,
+    },
   },
 ];
 

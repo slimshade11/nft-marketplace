@@ -5,6 +5,10 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RippleModule } from 'primeng/ripple';
+import { FileUploadModule } from 'primeng/fileupload';
 
 export const PRIMENG_UI: any[] = [
   ButtonModule,
@@ -14,4 +18,8 @@ export const PRIMENG_UI: any[] = [
   MenubarModule,
   AvatarModule,
   BadgeModule,
+  InputTextModule,
+  InputTextareaModule,
+  RippleModule,
+  FileUploadModule,
 ];

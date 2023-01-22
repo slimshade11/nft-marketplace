@@ -14,6 +14,8 @@ import { HomeFacade } from '@home/home.facade';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeEffects } from '@store/home/home.effects';
 import { NftListResolver } from '@home/resolvers/nft-list.resolver';
+import { FormService } from '@services/form.service';
+import { HomeService } from '@home/services/home.service';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -30,7 +32,7 @@ const imports: any[] = [
   EffectsModule.forRoot([HomeEffects]),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 ];
-const providers: any[] = [HomeFacade, NftListResolver];
+const providers: any[] = [HomeFacade, NftListResolver, FormService, HomeService];
 
 @NgModule({
   declarations,

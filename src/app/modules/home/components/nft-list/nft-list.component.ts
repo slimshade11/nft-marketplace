@@ -17,7 +17,7 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
   `,
 })
 export class NftListComponent extends DestroyComponent implements OnInit {
-  nftList$!: Observable<NFT[]>;
+  public nftList$!: Observable<NFT[]>;
 
   constructor(private activatedRoute: ActivatedRoute) {
     super();

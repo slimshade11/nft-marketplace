@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProfileRoutingModule } from '@profile/profile-routing.module';
+import { ProfileViewComponent } from '@profile/profile-view/profile-view.component';
+import { PRIMENG_UI } from '@primeng-ui/primeng-ui';
 
-import { ProfileRoutingModule } from './profile-routing.module';
-import { ProfileViewComponent } from './profile-view/profile-view.component';
+const declarations: any[] = [ProfileViewComponent];
+const imports: any[] = [CommonModule, ProfileRoutingModule, ...PRIMENG_UI];
 
-
-@NgModule({
-  declarations: [
-    ProfileViewComponent
-  ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule
-  ]
-})
-export class ProfileModule { }
+@NgModule({ declarations, imports })
+export class ProfileModule {}

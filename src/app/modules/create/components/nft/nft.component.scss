@@ -1,0 +1,6 @@
+@use 'variables' as *;
+
+.upload {
+  background-color: $blue;
+  border: 1px dashed $lightBlue;
+}

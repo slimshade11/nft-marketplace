@@ -3,9 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { NFT } from '@home/models/nft.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class HomeService {
   constructor(private http: HttpClient) {}
 
