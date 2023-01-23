@@ -19,6 +19,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true,
     "lib": ["ES2022", "dom"],
     "paths": {
       "@app/*": ["src/app/*"],
@@ -27,9 +28,11 @@
       "@common_enums/*": ["src/app/common/enums/*"],
       "@common_services/*": ["src/app/common/services/*"],
       "@common_models/*": ["src/app/common/models/*"],
+      "@common_web3/*": ["src/app/common/web3/*"],
       "@standalone/*": ["src/app/standalone/*"],
       "@store/*": ["src/app/store/*"],
       "@home_store/*": ["src/app/store/home/*"],
+      "@web3_store/*": ["src/app/store/web3/*"],
       "@home/*": ["src/app/modules/home/*"],
       "@create/*": ["src/app/modules/create/*"],
       "@profile/*": ["src/app/modules/profile/*"]

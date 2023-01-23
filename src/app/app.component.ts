@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { AppFacade } from '@app/app.facade';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +12,10 @@ import { PrimeNGConfig } from 'primeng/api';
   `,
 })
 export class AppComponent implements OnInit {
-  title = 'nft-marketplace';
-
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(private appFacade: AppFacade) {}
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
+    this.appFacade.initPrimengConfig();
+    this.appFacade.dispatchGetDefaultWeb3StateAction();
   }
 }

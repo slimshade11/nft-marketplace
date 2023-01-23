@@ -15,11 +15,10 @@ export class NftComponent {
   constructor(private homeFacade: HomeFacade) {}
 
   public onNftUpload(event: any): void {
-    console.log(event);
+    // console.log(event);
   }
 
   public onSubmit(form: FormGroup<CreateNftForm>): void {
-    console.log(form);
     if (!form.valid) {
       form.markAsPristine();
       return;
