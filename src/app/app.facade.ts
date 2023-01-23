@@ -50,8 +50,7 @@ export class AppFacade {
       switchMap(() =>
         this.web3Service.createDefaultWeb3State$().pipe(
           map((web3State: Web3State) => {
-            const clonedWeb3State = Object.freeze(_.cloneDeep(web3State));
-            return Web3Actions.createDefaultStateSuccess({ web3State: clonedWeb3State });
+            return Web3Actions.createDefaultStateSuccess({ web3State: Object.freeze(_.cloneDeep(web3State)) });
           }),
           catchError(() => {
             // toast notifications here //

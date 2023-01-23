@@ -20,6 +20,7 @@ import { FormService } from '@common_services/form.service';
 import { HomeService } from '@home/services/home.service';
 import { AppFacade } from '@app/app.facade';
 import { Web3Effects } from '@store/web3/web3.effects';
+import { ProfileFacade } from '@profile/profile.facade';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -44,6 +45,7 @@ const providers: any[] = [
   CreateNftFormService,
   AppFacade,
   Web3Service,
+  ProfileFacade,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

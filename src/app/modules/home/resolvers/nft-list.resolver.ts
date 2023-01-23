@@ -8,8 +8,8 @@ import { NFT } from '@home/models/nft.model';
 export class NftListResolver implements Resolve<NFT[]> {
   constructor(private homeFacade: HomeFacade) {}
 
-  resolve(): Observable<any> {
-    return this.homeFacade.getNftList$().pipe(
+  resolve(): Observable<NFT[]> {
+    return this.homeFacade.selectNftList$().pipe(
       tap((nftList: NFT[] | null): false | void => !nftList && this.homeFacade.dispatchGetNftListAction()),
       filter(Boolean),
       take(1)
