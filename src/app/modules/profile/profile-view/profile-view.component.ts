@@ -4,7 +4,7 @@ import { filter, map, Observable, takeUntil } from 'rxjs';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { NFT } from '@home/models/nft.model';
 import { ProfileFacade } from '@profile/profile.facade';
-import { ethers, providers } from 'ethers';
+import { providers } from 'ethers';
 
 @Component({
   selector: 'nftm-profile-view',
@@ -25,16 +25,13 @@ export class ProfileViewComponent extends DestroyComponent implements OnInit {
       .selectProvider$()
       .pipe(filter(Boolean), takeUntil(this.destroy$))
       .subscribe({
-        next: (provider: providers.Web3Provider): void => this.getAccounts(provider),
+        next: (provider: providers.Web3Provider): Promise<void> => this.setAccount(provider),
       });
   }
 
-  getAccounts(provider: ethers.providers.Web3Provider) {
-    this.ngZone.run(async () => {
-      provider.listAccounts();
-      const accounts = await provider?.listAccounts();
-      this.account = accounts[0];
-      console.log(this.account);
-    });
+  async setAccount(provider: providers.Web3Provider): Promise<void> {
+    provider.listAccounts();
+    const accounts = await provider?.listAccounts();
+    this.account = accounts[0];
   }
 }
