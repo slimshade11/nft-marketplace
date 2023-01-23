@@ -8,9 +8,8 @@ describe('NftItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NftItemComponent ]
-    })
-    .compileComponents();
+      declarations: [NftItemComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NftItemComponent);
     component = fixture.componentInstance;
