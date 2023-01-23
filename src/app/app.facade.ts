@@ -8,6 +8,7 @@ import { map, switchMap, catchError, of, Observable, tap } from 'rxjs';
 import { State as Web3State } from '@store/web3';
 import { Contract, providers } from 'ethers';
 import { PrimeNGConfig } from 'primeng/api';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AppFacade {
@@ -49,8 +50,8 @@ export class AppFacade {
       switchMap(() =>
         this.web3Service.createDefaultWeb3State$().pipe(
           map((web3State: Web3State) => {
-            console.log(JSON.parse(JSON.stringify(web3State)));
-            return Web3Actions.createDefaultStateSuccess({ web3State });
+            const clonedWeb3State = Object.freeze(_.cloneDeep(web3State));
+            return Web3Actions.createDefaultStateSuccess({ web3State: clonedWeb3State });
           }),
           catchError(() => {
             // toast notifications here //

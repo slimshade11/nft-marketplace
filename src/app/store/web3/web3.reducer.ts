@@ -25,8 +25,12 @@ export const Reducer = createReducer(
     return { ...state, isLoading: true };
   }),
   on(Web3Actions.createDefaultStateSuccess, (state, { web3State }): State => {
-    console.log(222);
-    return { ...state, isLoading: web3State.isLoading, ethereum: web3State.ethereum };
+    return Object.freeze({
+      isLoading: web3State.isLoading,
+      ethereum: web3State.ethereum,
+      provider: web3State.provider,
+      contract: web3State.contract,
+    });
   }),
   on(Web3Actions.createDefaultStateFailure, (state): State => {
     return { ...state, isLoading: false };
