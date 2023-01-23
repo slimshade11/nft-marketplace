@@ -8,6 +8,6 @@ export class HomeService {
   constructor(private http: HttpClient) {}
 
   public getNftList$(): Observable<NFT[]> {
-    return this.http.get<NFT[]>('/assets/meta.json');
+    return this.http.get<NFT[]>('/assets/content/meta.json');
   }
 }

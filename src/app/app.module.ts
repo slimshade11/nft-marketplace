@@ -1,3 +1,4 @@
+import { Web3Service } from '@common_web3/services/web3.service';
 import { CreateNftFormService } from '@home/services/create-nft-form.service';
 import { ROOT_REDUCERS } from '@store/root-reducer';
 import { NgModule, isDevMode } from '@angular/core';
@@ -17,6 +18,9 @@ import { HomeEffects } from '@home_store/home.effects';
 import { NftListResolver } from '@home/resolvers/nft-list.resolver';
 import { FormService } from '@common_services/form.service';
 import { HomeService } from '@home/services/home.service';
+import { AppFacade } from '@app/app.facade';
+import { Web3Effects } from '@store/web3/web3.effects';
+import { ProfileFacade } from '@profile/profile.facade';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -30,10 +34,19 @@ const imports: any[] = [
 
   // NgRx //
   StoreModule.forRoot(ROOT_REDUCERS),
-  EffectsModule.forRoot([HomeEffects]),
+  EffectsModule.forRoot([HomeEffects, Web3Effects]),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 ];
-const providers: any[] = [HomeFacade, NftListResolver, FormService, HomeService, CreateNftFormService];
+const providers: any[] = [
+  HomeFacade,
+  NftListResolver,
+  FormService,
+  HomeService,
+  CreateNftFormService,
+  AppFacade,
+  Web3Service,
+  ProfileFacade,
+];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
 export class AppModule {}

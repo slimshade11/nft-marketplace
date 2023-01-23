@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CreateNftForm } from '@home/models/create-nft-form.model';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -14,12 +14,9 @@ export class NftComponent {
 
   constructor(private homeFacade: HomeFacade) {}
 
-  public onNftUpload(event: any): void {
-    console.log(event);
-  }
+  public onNftUpload(event: any): void {}
 
   public onSubmit(form: FormGroup<CreateNftForm>): void {
-    console.log(form);
     if (!form.valid) {
       form.markAsPristine();
       return;

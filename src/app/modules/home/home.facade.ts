@@ -1,13 +1,15 @@
-import { CreateNftFormService } from './services/create-nft-form.service';
+import { Web3Selectors } from '@store/web3';
+import { CreateNftFormService } from '@home/services/create-nft-form.service';
 import { HomeService } from '@home/services/home.service';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
 import { HomeActions, HomeSelectors } from '@store/home';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, from, map, Observable, of, switchMap } from 'rxjs';
 import { NFT } from '@home/models/nft.model';
 import { FormGroup } from '@angular/forms';
 import { CreateNftForm } from '@home/models/create-nft-form.model';
+import { providers } from 'ethers';
 
 @Injectable()
 export class HomeFacade {
@@ -30,7 +32,7 @@ export class HomeFacade {
   // NgRx Action Dispatchers end //
 
   // NgRx Selectors //
-  public getNftList$(): Observable<NFT[] | null> {
+  public selectNftList$(): Observable<NFT[] | null> {
     return this.store.select(HomeSelectors.nftList);
   }
   // NgRx Selectors end //
