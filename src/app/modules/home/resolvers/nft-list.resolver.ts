@@ -1,7 +1,7 @@
 import { HomeFacade } from '@home/home.facade';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { filter, Observable, of, take, tap } from 'rxjs';
+import { filter, Observable, take, tap } from 'rxjs';
 import { NFT } from '@home/models/nft.model';
 
 @Injectable()

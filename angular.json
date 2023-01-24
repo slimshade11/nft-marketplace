@@ -29,11 +29,12 @@
               "node_modules/primeng/resources/themes/vela-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/assets/styles/tailwind/tailwind.css",
+              "src/assets/styles/primeng-custom/index.scss",
               "src/styles.scss"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": ["./src/assets/styles/"]
+              "includePaths": ["src/assets/styles"]
             }
           },
           "configurations": {

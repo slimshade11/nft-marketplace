@@ -21,5 +21,5 @@ import { providers } from 'ethers';
   `,
 })
 export class ErrorsComponent {
-  @Input() provider!: providers.Web3Provider | null;
+  @Input() public provider!: providers.Web3Provider | null;
 }

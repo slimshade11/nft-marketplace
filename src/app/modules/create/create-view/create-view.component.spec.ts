@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CreateViewComponent } from './create-view.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CreateViewComponent } from '@create/create-view/create-view.component';
 
 describe('CreateViewComponent', () => {
   let component: CreateViewComponent;
@@ -8,6 +8,7 @@ describe('CreateViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [CreateViewComponent],
     }).compileComponents();
 
