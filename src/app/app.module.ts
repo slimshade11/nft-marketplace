@@ -1,3 +1,4 @@
+import { PRIMENG_UI } from '@common_primeng-ui/primeng-ui';
 import { APP_CONFIG, APP_CONFIG_TOKEN } from '@common_config/app.config';
 import { Web3Service } from '@common_web3/services/web3.service';
 import { CreateNftFormService } from '@home/services/create-nft-form.service';
@@ -22,6 +23,9 @@ import { HomeService } from '@home/services/home.service';
 import { AppFacade } from '@app/app.facade';
 import { Web3Effects } from '@store/web3/web3.effects';
 import { ProfileFacade } from '@profile/profile.facade';
+import { ToastService } from '@common_services/toast.service';
+import { MessageService } from 'primeng/api';
+import { ErrorsComponent } from '@standalone/components/errors/errors.component';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -32,6 +36,8 @@ const imports: any[] = [
   RouterModule,
   FooterComponent,
   HttpClientModule,
+  PRIMENG_UI,
+  ErrorsComponent,
 
   // NgRx //
   StoreModule.forRoot(ROOT_REDUCERS),
@@ -51,6 +57,8 @@ const providers: any[] = [
   AppFacade,
   Web3Service,
   ProfileFacade,
+  ToastService,
+  MessageService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

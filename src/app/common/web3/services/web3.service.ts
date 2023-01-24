@@ -1,6 +1,6 @@
 import { AppConfig } from '@common_models/app-config.model';
 import { APP_CONFIG_TOKEN } from '@common_config/app.config';
-import { from, map, Observable, of, take, tap } from 'rxjs';
+import { from, map, Observable, of, take } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { State as Web3State } from '@store/web3';
@@ -18,6 +18,12 @@ export class Web3Service {
 
   public createDefaultWeb3State$(): Observable<Web3State> {
     const ethereum: MetaMaskInpageProvider = window.ethereum;
+
+    if (!ethereum) {
+      console.error('No provider, please install Metamask');
+      return of({ ethereum: null, provider: null, contract: null, isLoading: false });
+    }
+
     const provider: providers.Web3Provider = new ethers.providers.Web3Provider(ethereum as any);
 
     return from(this.loadContract('NftMarket', provider)).pipe(

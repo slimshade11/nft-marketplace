@@ -1,3 +1,5 @@
+import { ErrorFetchData } from './common/web3/toast-messages/error-fetch-data';
+import { ToastStatus } from '@common_enums/toast-status.enum';
 import { Injectable } from '@angular/core';
 import { Web3Service } from '@common_web3/services/web3.service';
 import { MetaMaskInpageProvider } from '@metamask/providers';
@@ -8,6 +10,7 @@ import { map, switchMap, catchError, of, Observable, tap } from 'rxjs';
 import { State as Web3State } from '@store/web3';
 import { Contract, providers } from 'ethers';
 import { PrimeNGConfig } from 'primeng/api';
+import { ToastService } from '@common_services/toast.service';
 
 @Injectable()
 export class AppFacade {
@@ -15,7 +18,8 @@ export class AppFacade {
     private web3Service: Web3Service,
     private actions$: Actions,
     private store: Store,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private toastService: ToastService
   ) {}
 
   public initPrimengConfig(): void {
@@ -52,7 +56,7 @@ export class AppFacade {
             return Web3Actions.createDefaultStateSuccess({ web3State: Object.freeze(web3State) });
           }),
           catchError(() => {
-            // toast notifications here //
+            this.toastService.showMessage(ToastStatus.ERROR, ErrorFetchData.severity, ErrorFetchData.details);
             return of(Web3Actions.createDefaultStateFailure());
           })
         )

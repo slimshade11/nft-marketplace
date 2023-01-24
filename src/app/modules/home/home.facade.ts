@@ -9,7 +9,6 @@ import { catchError, from, map, Observable, of, switchMap } from 'rxjs';
 import { NFT } from '@home/models/nft.model';
 import { FormGroup } from '@angular/forms';
 import { CreateNftForm } from '@home/models/create-nft-form.model';
-import { providers } from 'ethers';
 
 @Injectable()
 export class HomeFacade {
