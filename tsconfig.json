@@ -28,6 +28,7 @@
       "@common_services/*": ["src/app/common/services/*"],
       "@common_models/*": ["src/app/common/models/*"],
       "@common_web3/*": ["src/app/common/web3/*"],
+      "@common_config/*": ["src/app/common/config/*"],
       "@standalone/*": ["src/app/standalone/*"],
       "@store/*": ["src/app/store/*"],
       "@home_store/*": ["src/app/store/home/*"],

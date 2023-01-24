@@ -1,3 +1,4 @@
+import { APP_CONFIG, APP_CONFIG_TOKEN } from '@common_config/app.config';
 import { Web3Service } from '@common_web3/services/web3.service';
 import { CreateNftFormService } from '@home/services/create-nft-form.service';
 import { ROOT_REDUCERS } from '@store/root-reducer';
@@ -38,6 +39,10 @@ const imports: any[] = [
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 ];
 const providers: any[] = [
+  {
+    provide: APP_CONFIG_TOKEN,
+    useValue: APP_CONFIG,
+  },
   HomeFacade,
   NftListResolver,
   FormService,
