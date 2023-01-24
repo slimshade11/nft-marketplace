@@ -1,6 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormGroup } from '@angular/forms';
+import { HomeFacade } from '@home/home.facade';
+import { CreateNftForm } from '@home/models/create-nft-form.model';
+import { NftComponent } from '@create/components/nft/nft.component';
+import { Observable, of } from 'rxjs';
 
-import { NftComponent } from './nft.component';
+class MockHomeFacade {
+  getCreateNftForm$(): Observable<FormGroup<CreateNftForm>> {
+    return of();
+  }
+}
 
 describe('NftComponent', () => {
   let component: NftComponent;
@@ -9,6 +18,7 @@ describe('NftComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NftComponent],
+      providers: [{ provide: HomeFacade, useClass: MockHomeFacade }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NftComponent);

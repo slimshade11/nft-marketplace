@@ -12,7 +12,7 @@ import { providers } from 'ethers';
   styleUrls: ['./profile-view.component.scss'],
 })
 export class ProfileViewComponent extends DestroyComponent implements OnInit {
-  public nftList$!: Observable<NFT[]>;
+  public nftList$: Observable<NFT[]> = this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
   public account!: string;
 
   constructor(private activatedRoute: ActivatedRoute, private profileFacade: ProfileFacade, private ngZone: NgZone) {
@@ -20,7 +20,6 @@ export class ProfileViewComponent extends DestroyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nftList$ = this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
     this.profileFacade
       .selectProvider$()
       .pipe(filter(Boolean), takeUntil(this.destroy$))

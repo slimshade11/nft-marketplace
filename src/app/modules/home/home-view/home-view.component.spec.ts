@@ -1,6 +1,7 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { NftListComponent } from '@home/components/nft-list/nft-list.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { HomeViewComponent } from './home-view.component';
+import { HomeViewComponent } from '@home/home-view/home-view.component';
 
 describe('HomeViewComponent', () => {
   let component: HomeViewComponent;
@@ -8,7 +9,8 @@ describe('HomeViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeViewComponent],
+      declarations: [HomeViewComponent, NftListComponent],
+      imports: [RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeViewComponent);

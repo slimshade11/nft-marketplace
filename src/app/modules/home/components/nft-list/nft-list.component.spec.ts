@@ -1,6 +1,6 @@
+import { NftListComponent } from '@home/components/nft-list/nft-list.component';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { NftListComponent } from './nft-list.component';
 
 describe('NftListComponent', () => {
   let component: NftListComponent;
@@ -9,6 +9,7 @@ describe('NftListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NftListComponent],
+      imports: [RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NftListComponent);
