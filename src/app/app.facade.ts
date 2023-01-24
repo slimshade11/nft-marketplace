@@ -1,4 +1,4 @@
-import { ErrorFetchData } from './common/web3/toast-messages/error-fetch-data';
+import { ErrorFetchWeb3Data } from '@common_web3/toast-messages/error-fetch-web3-data';
 import { ToastStatus } from '@common_enums/toast-status.enum';
 import { Injectable } from '@angular/core';
 import { Web3Service } from '@common_web3/services/web3.service';
@@ -56,7 +56,7 @@ export class AppFacade {
             return Web3Actions.createDefaultStateSuccess({ web3State: Object.freeze(web3State) });
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, ErrorFetchData.severity, ErrorFetchData.details);
+            this.toastService.showMessage(ToastStatus.ERROR, ErrorFetchWeb3Data.severity, ErrorFetchWeb3Data.details);
             return of(Web3Actions.createDefaultStateFailure());
           })
         )
