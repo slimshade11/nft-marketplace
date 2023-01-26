@@ -25,7 +25,7 @@ import { Web3Effects } from '@store/web3/web3.effects';
 import { ProfileFacade } from '@profile/profile.facade';
 import { ToastService } from '@common_services/toast.service';
 import { MessageService } from 'primeng/api';
-import { ErrorsComponent } from '@standalone/components/errors/errors.component';
+import { AuthGuard } from '@common_guards/auth.guard';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -37,7 +37,6 @@ const imports: any[] = [
   FooterComponent,
   HttpClientModule,
   PRIMENG_UI,
-  ErrorsComponent,
 
   // NgRx //
   StoreModule.forRoot(ROOT_REDUCERS),
@@ -59,6 +58,7 @@ const providers: any[] = [
   ProfileFacade,
   ToastService,
   MessageService,
+  AuthGuard,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

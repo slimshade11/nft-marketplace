@@ -2,13 +2,12 @@ import { ErrorFetchWeb3Data } from '@common_web3/toast-messages/error-fetch-web3
 import { ToastStatus } from '@common_enums/toast-status.enum';
 import { Injectable } from '@angular/core';
 import { Web3Service } from '@common_web3/services/web3.service';
-import { MetaMaskInpageProvider } from '@metamask/providers';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Web3Actions, Web3Selectors } from '@store/web3';
-import { map, switchMap, catchError, of, Observable, tap } from 'rxjs';
+import { map, switchMap, catchError, of, Observable, tap, take } from 'rxjs';
 import { State as Web3State } from '@store/web3';
-import { Contract, providers } from 'ethers';
+import { Contract } from 'ethers';
 import { PrimeNGConfig } from 'primeng/api';
 import { ToastService } from '@common_services/toast.service';
 
@@ -22,6 +21,15 @@ export class AppFacade {
     private toastService: ToastService
   ) {}
 
+  public handleAccountsChanged(): Observable<string> {
+    return this.web3Service.handleAccountChanged$().pipe(
+      map((address: string[]): string => address[0]),
+      tap((address: string): void => {
+        this.store.dispatch(Web3Actions.accountChanged({ address: Object.freeze(address) }));
+      })
+    );
+  }
+
   public initPrimengConfig(): void {
     this.primengConfig.ripple = true;
   }
@@ -33,16 +41,16 @@ export class AppFacade {
   // NgRx action dispatchers end //
 
   // Ngrx selectors //
-  public selectEthereum$(): Observable<MetaMaskInpageProvider | null> {
-    return this.store.select(Web3Selectors.ethereum);
-  }
-
-  public selectProvider$(): Observable<providers.Web3Provider | null> {
-    return this.store.select(Web3Selectors.provider);
-  }
-
   public selectContract$(): Observable<Contract | null> {
     return this.store.select(Web3Selectors.contract);
+  }
+
+  public selectConnectedAddress$(): Observable<string> {
+    return this.store.select(Web3Selectors.address);
+  }
+
+  public selectIsMetamaskInstalled$(): Observable<boolean> {
+    return this.store.select(Web3Selectors.isMetamaskInstalled);
   }
   // Ngrx selectors end //
 
@@ -61,6 +69,20 @@ export class AppFacade {
           })
         )
       )
+    );
+  }
+
+  public accountChangedEffect$() {
+    return this.actions$.pipe(
+      ofType(Web3Actions.accountChanged),
+      switchMap(({ address }) => {
+        return of(address).pipe(
+          map((address: string) => {
+            return Web3Actions.accountChangedSuccess({ address: Object.freeze(address) });
+          }),
+          catchError(() => of(Web3Actions.accountChangedFailure()))
+        );
+      })
     );
   }
   // NgRx effects end //

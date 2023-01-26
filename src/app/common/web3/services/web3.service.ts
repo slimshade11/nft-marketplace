@@ -1,10 +1,11 @@
 import { AppConfig } from '@common_models/app-config.model';
 import { APP_CONFIG_TOKEN } from '@common_config/app.config';
-import { from, map, Observable, of, take } from 'rxjs';
+import { combineLatestWith, from, fromEvent, map, Observable, of, take } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { State as Web3State } from '@store/web3';
 import { Contract, ethers, providers } from 'ethers';
+import { MetamaskEventName } from '@common_web3/enums/metamask-event-name.enum';
 
 declare global {
   interface Window {
@@ -14,32 +15,38 @@ declare global {
 
 @Injectable()
 export class Web3Service {
-  constructor(@Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig) {}
+  private ethereum!: MetaMaskInpageProvider;
+  private provider!: providers.Web3Provider;
+  public currentAddress!: string;
+
+  constructor(@Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig) {
+    // FIXME: Redux devtool crash on account change
+
+    this.ethereum = window.ethereum;
+    if (this.ethereum) {
+      this.provider = new ethers.providers.Web3Provider(this.ethereum as any);
+    }
+  }
+
+  public handleAccountChanged$(): Observable<string[]> {
+    return fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>;
+  }
 
   public createDefaultWeb3State$(): Observable<Web3State> {
-    const ethereum: MetaMaskInpageProvider = window.ethereum;
-
-    if (!ethereum) {
-      console.error('No provider, please install Metamask');
-      return of({ ethereum: null, provider: null, contract: null, isLoading: false });
-    }
-
-    const provider: providers.Web3Provider = new ethers.providers.Web3Provider(ethereum as any);
-
-    return from(this.loadContract('NftMarket', provider)).pipe(
-      take(1),
-      map((contract: Contract) => ({
-        ethereum,
-        provider,
-        contract,
-        isLoading: false,
-      }))
+    return from(this.loadContract('NftMarket', this.provider)).pipe(
+      combineLatestWith(from(this.provider.listAccounts())),
+      map(
+        ([contract, accounts]: [Contract, string[]]): Web3State => ({
+          isMetamaskInstalled: !!this.ethereum,
+          address: accounts[0] ?? '',
+          contract: contract ?? null,
+          isLoading: false,
+        })
+      )
     );
   }
 
-  public async loadContract(name: string, provider: providers.Web3Provider): Promise<Contract> {
-    if (!this.appConfig.networkId) return Promise.reject('Network ID is not defined!');
-
+  private async loadContract(name: string, provider: providers.Web3Provider): Promise<Contract> {
     const response = await fetch(`/assets/contracts/${name}.json`);
     const Artifact = await response.json();
 
@@ -54,5 +61,17 @@ export class Web3Service {
     } else {
       return Promise.reject(`Contract: [${name}] cannot be loaded!`);
     }
+  }
+
+  public connectWallet(): void {
+    try {
+      this.ethereum.request({ method: 'eth_requestAccounts' });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  public listenForAccountChange$(): Observable<unknown> {
+    return fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED);
   }
 }

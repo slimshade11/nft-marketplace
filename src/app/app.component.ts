@@ -1,14 +1,14 @@
+import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Component, OnInit } from '@angular/core';
 import { AppFacade } from '@app/app.facade';
-import { providers } from 'ethers';
-import { Observable } from 'rxjs';
+import { Observable, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   template: `
-    <nftm-errors [provider]="provider$ | async"></nftm-errors>
+    <nftm-navbar [account]="(address$ | async)!"> </nftm-navbar>
 
-    <nftm-navbar></nftm-navbar>
+    {{ address$ | async }}
     <div class="max-w-screen-xl px-3 mx-auto ">
       <router-outlet></router-outlet>
     </div>
@@ -17,10 +17,14 @@ import { Observable } from 'rxjs';
     <p-toast position="bottom-center"></p-toast>
   `,
 })
-export class AppComponent implements OnInit {
-  public provider$: Observable<providers.Web3Provider | null> = this.appFacade.selectProvider$();
+export class AppComponent extends DestroyComponent implements OnInit {
+  public isMetamaskInstalled$: Observable<boolean> = this.appFacade.selectIsMetamaskInstalled$();
+  public address$: Observable<string> = this.appFacade.selectConnectedAddress$();
 
-  constructor(private appFacade: AppFacade) {}
+  constructor(private appFacade: AppFacade) {
+    super();
+    this.appFacade.handleAccountsChanged().subscribe();
+  }
 
   ngOnInit(): void {
     this.appFacade.initPrimengConfig();

@@ -8,3 +8,10 @@ export const createDefaultStateSuccess = createAction(
   props<{ web3State: Web3State }>()
 );
 export const createDefaultStateFailure = createAction(Web3ActionTypes.CREATE_DEFAULT_STATE_FAILURE);
+
+export const accountChanged = createAction(Web3ActionTypes.ACCOUNT_CHANGED, props<{ address: string }>());
+export const accountChangedSuccess = createAction(
+  Web3ActionTypes.ACCOUNT_CHANGED_SUCCESS,
+  props<{ address: string }>()
+);
+export const accountChangedFailure = createAction(Web3ActionTypes.ACCOUNT_CHANGED_FAILURE);
