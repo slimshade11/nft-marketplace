@@ -8,5 +8,9 @@ export class Web3Effects {
     return this.appFacade.createDefaultStateEffect$();
   });
 
+  accountChanged$ = createEffect(() => {
+    return this.appFacade.accountChangedEffect$();
+  });
+
   constructor(private appFacade: AppFacade) {}
 }

@@ -1,3 +1,4 @@
+import { AuthGuard } from '@common_guards/auth.guard';
 import { ProfileModule } from '@profile/profile.module';
 import { CreateModule } from '@create/create.module';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,7 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: (): Promise<any> =>
       import('@profile/profile.module').then(({ ProfileModule }): ProfileModule => ProfileModule),
+    canMatch: [AuthGuard],
     resolve: {
       nftList: NftListResolver,
     },

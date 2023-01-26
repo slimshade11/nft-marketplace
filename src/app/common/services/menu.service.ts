@@ -3,7 +3,7 @@ import { MenuLinks } from '@common_models/menu-links.model';
 
 @Injectable()
 export class MenuService {
-  public setMenuLinks(isLoggedIn: boolean): MenuLinks {
+  public setMenuLinks(): MenuLinks {
     const links: MenuLinks = {
       dashboard: [
         {
@@ -24,7 +24,6 @@ export class MenuService {
           label: 'Profile',
           routerLink: '/profile',
           icon: 'pi pi-fw pi-user',
-          visible: isLoggedIn,
         },
       ],
     };
