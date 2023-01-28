@@ -54,8 +54,10 @@ export class Web3Service {
     return contract;
   }
 
-  public handleAccountChanged$(): Observable<string[]> {
-    return fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>;
+  public onAccountChanged$(): Observable<string> {
+    return (fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>).pipe(
+      map((address: string[]) => address[0] ?? '')
+    );
   }
 
   public connectWallet(): void {

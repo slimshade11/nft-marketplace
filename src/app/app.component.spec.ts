@@ -5,7 +5,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from '@app/app.component';
 import { Observable, of } from 'rxjs';
 import { providers } from 'ethers';
-import { ErrorsComponent } from '@standalone/components/errors/errors.component';
 import { NavbarComponent } from '@standalone/components/navbar/navbar.component';
 import { FooterComponent } from '@standalone/components/footer/footer.component';
 import { ToastModule } from 'primeng/toast';
@@ -29,7 +28,7 @@ class MockAppFacade {
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, ErrorsComponent, NavbarComponent, FooterComponent, ToastModule],
+      imports: [RouterTestingModule, NavbarComponent, FooterComponent, ToastModule],
       declarations: [AppComponent],
       providers: [{ provide: AppFacade, useClass: MockAppFacade }, MessageService],
     }).compileComponents();

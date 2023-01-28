@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { MenuService } from '@common/services/menu.service';
 import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
 import { MenuLinks } from '@common/models/menu-links.model';
@@ -5,6 +6,8 @@ import { MenuType } from '@common/enums/menu-type.enum';
 import { Component, Input, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Web3Service } from '@common/web3/services/web3.service';
+import { Store } from '@ngrx/store';
+import { Web3Selectors } from '@app/store/web3';
 
 @Component({
   selector: 'nftm-navbar',
@@ -20,14 +23,7 @@ import { Web3Service } from '@common/web3/services/web3.service';
           [popup]="true">
         </p-menu>
         <div class="flex items-center">
-          <ng-container *ngIf="account; else connectButton">
-            <div class="mr-5 cursor-pointer">
-              <i
-                class="pi pi-bell"
-                pBadge
-                severity="success">
-              </i>
-            </div>
+          <ng-container *ngIf="(address$ | async)!.length; else connectButton">
             <p-avatar
               (click)="menu.toggle($event)"
               label="P"
@@ -46,10 +42,10 @@ import { Web3Service } from '@common/web3/services/web3.service';
   `,
 })
 export class NavbarComponent {
-  @Input() public account!: string;
+  public address$: Observable<string> = this.store.select(Web3Selectors.address);
 
   public links: MenuLinks = this.menuService.setMenuLinks();
   public menuType = MenuType;
 
-  constructor(@Self() private menuService: MenuService, public web3Service: Web3Service) {}
+  constructor(@Self() private menuService: MenuService, public web3Service: Web3Service, private store: Store) {}
 }

@@ -1,16 +1,17 @@
-import { HomeFacade } from '@home/home.facade';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { filter, Observable, take, tap } from 'rxjs';
 import { NFT } from '@home/models/nft.model';
+import { Store } from '@ngrx/store';
+import { HomeActions, HomeSelectors } from '@store/home';
 
 @Injectable()
 export class NftListResolver implements Resolve<NFT[]> {
-  constructor(private homeFacade: HomeFacade) {}
+  constructor(private store: Store) {}
 
   resolve(): Observable<NFT[]> {
-    return this.homeFacade.selectNftList$().pipe(
-      tap((nftList: NFT[] | null): false | void => !nftList && this.homeFacade.dispatchGetNftListAction()),
+    return this.store.select(HomeSelectors.nftList).pipe(
+      tap((nftList: NFT[] | null): false | void => !nftList && this.store.dispatch(HomeActions.getNftList())),
       filter(Boolean),
       take(1)
     );

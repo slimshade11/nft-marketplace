@@ -1,38 +1,32 @@
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Component, OnInit } from '@angular/core';
 import { AppFacade } from '@app/app.facade';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Web3Actions } from './store/web3';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   template: `
-    <nftm-navbar [account]="(address$ | async)!"> </nftm-navbar>
+    <nftm-navbar></nftm-navbar>
 
-    {{ address$ | async }}
-    <div class="max-w-screen-xl px-3 mx-auto ">
+    <main class="max-w-screen-xl px-3 mx-auto ">
       <router-outlet></router-outlet>
-    </div>
+    </main>
+
     <nftm-footer></nftm-footer>
 
     <p-toast position="bottom-center"></p-toast>
   `,
 })
 export class AppComponent extends DestroyComponent implements OnInit {
-  public isMetamaskInstalled$: Observable<boolean> = this.appFacade.selectIsMetamaskInstalled$();
-  public address$: Observable<string> = this.appFacade.selectConnectedAddress$();
-  test = 1;
-
-  constructor(private appFacade: AppFacade) {
+  constructor(private appFacade: AppFacade, private store: Store, private primengConfig: PrimeNGConfig) {
     super();
-    this.appFacade.handleAccountsChanged$().subscribe();
   }
 
   ngOnInit(): void {
-    this.appFacade.initPrimengConfig();
-
-    if (this.test === 1) {
-      this.appFacade.dispatchGetDefaultWeb3StateAction();
-      this.test = 2;
-    }
+    this.primengConfig.ripple = true;
+    this.store.dispatch(Web3Actions.createDefaultState());
+    this.appFacade.onAccountsChanged$().subscribe();
   }
 }
