@@ -1,11 +1,11 @@
-import { AppConfig } from '@common_models/app-config.model';
-import { APP_CONFIG_TOKEN } from '@common_config/app.config';
-import { combineLatestWith, from, fromEvent, map, Observable, of, take } from 'rxjs';
+import { AppConfig } from '@common/models/app-config.model';
+import { APP_CONFIG_TOKEN } from '@common/config/app.config';
+import { combineLatestWith, finalize, from, fromEvent, map, Observable, of, take, tap } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { State as Web3State } from '@store/web3';
 import { Contract, ethers, providers } from 'ethers';
-import { MetamaskEventName } from '@common_web3/enums/metamask-event-name.enum';
+import { MetamaskEventName } from '@common/web3/enums/metamask-event-name.enum';
 
 declare global {
   interface Window {
@@ -28,39 +28,34 @@ export class Web3Service {
     }
   }
 
-  public handleAccountChanged$(): Observable<string[]> {
-    return fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>;
-  }
-
   public createDefaultWeb3State$(): Observable<Web3State> {
     return from(this.loadContract('NftMarket', this.provider)).pipe(
       combineLatestWith(from(this.provider.listAccounts())),
-      map(
-        ([contract, accounts]: [Contract, string[]]): Web3State => ({
+      map(([contract, accounts]: [Contract | null, string[]]): Web3State => {
+        return {
           isMetamaskInstalled: !!this.ethereum,
           address: accounts[0] ?? '',
-          contract: contract ?? null,
+          contract,
           isLoading: false,
-        })
-      )
+        };
+      })
     );
   }
 
-  private async loadContract(name: string, provider: providers.Web3Provider): Promise<Contract> {
+  private async loadContract(name: string, provider: providers.Web3Provider): Promise<Contract | null> {
+    let contract: Contract | null = null;
     const response = await fetch(`/assets/contracts/${name}.json`);
     const Artifact = await response.json();
 
     if (Artifact.networks[this.appConfig.networkId].address) {
-      const contract: Contract = new ethers.Contract(
-        Artifact.networks[this.appConfig.networkId].address,
-        Artifact.abi,
-        provider
-      );
-
-      return contract;
-    } else {
-      return Promise.reject(`Contract: [${name}] cannot be loaded!`);
+      contract = new ethers.Contract(Artifact.networks[this.appConfig.networkId].address, Artifact.abi, provider);
     }
+
+    return contract;
+  }
+
+  public handleAccountChanged$(): Observable<string[]> {
+    return fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>;
   }
 
   public connectWallet(): void {
@@ -69,9 +64,5 @@ export class Web3Service {
     } catch (e) {
       console.error(e);
     }
-  }
-
-  public listenForAccountChange$(): Observable<unknown> {
-    return fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED);
   }
 }

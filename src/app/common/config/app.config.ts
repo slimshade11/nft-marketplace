@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { AppConfig } from '@common_models/app-config.model';
+import { AppConfig } from '@common/models/app-config.model';
 
 export const AppConfigKey = 'App config';
 

@@ -1,4 +1,4 @@
-import { ToastMessage } from '@common_models/toast-message.model';
+import { ToastMessage } from '@common/models/toast-message.model';
 
 export const ErrorFetchWeb3Data: ToastMessage = {
   severity: 'Error!',

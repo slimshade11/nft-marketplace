@@ -1,7 +1,7 @@
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Component, OnInit } from '@angular/core';
 import { AppFacade } from '@app/app.facade';
-import { Observable, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,14 +20,19 @@ import { Observable, takeUntil } from 'rxjs';
 export class AppComponent extends DestroyComponent implements OnInit {
   public isMetamaskInstalled$: Observable<boolean> = this.appFacade.selectIsMetamaskInstalled$();
   public address$: Observable<string> = this.appFacade.selectConnectedAddress$();
+  test = 1;
 
   constructor(private appFacade: AppFacade) {
     super();
-    this.appFacade.handleAccountsChanged().subscribe();
+    this.appFacade.handleAccountsChanged$().subscribe();
   }
 
   ngOnInit(): void {
     this.appFacade.initPrimengConfig();
-    this.appFacade.dispatchGetDefaultWeb3StateAction();
+
+    if (this.test === 1) {
+      this.appFacade.dispatchGetDefaultWeb3StateAction();
+      this.test = 2;
+    }
   }
 }

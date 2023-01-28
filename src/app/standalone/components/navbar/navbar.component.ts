@@ -1,10 +1,10 @@
-import { MenuService } from '@common_services/menu.service';
-import { PRIMENG_UI } from '@common_primeng-ui/primeng-ui';
-import { MenuLinks } from '@common_models/menu-links.model';
-import { MenuType } from '@common_enums/menu-type.enum';
+import { MenuService } from '@common/services/menu.service';
+import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
+import { MenuLinks } from '@common/models/menu-links.model';
+import { MenuType } from '@common/enums/menu-type.enum';
 import { Component, Input, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Web3Service } from '@common_web3/services/web3.service';
+import { Web3Service } from '@common/web3/services/web3.service';
 
 @Component({
   selector: 'nftm-navbar',
@@ -20,7 +20,7 @@ import { Web3Service } from '@common_web3/services/web3.service';
           [popup]="true">
         </p-menu>
         <div class="flex items-center">
-          <ng-container *ngIf="account.length; else connectButton">
+          <ng-container *ngIf="account; else connectButton">
             <div class="mr-5 cursor-pointer">
               <i
                 class="pi pi-bell"

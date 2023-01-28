@@ -1,6 +1,6 @@
-import { PRIMENG_UI } from '@common_primeng-ui/primeng-ui';
-import { APP_CONFIG, APP_CONFIG_TOKEN } from '@common_config/app.config';
-import { Web3Service } from '@common_web3/services/web3.service';
+import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
+import { APP_CONFIG, APP_CONFIG_TOKEN } from '@common/config/app.config';
+import { Web3Service } from '@common/web3/services/web3.service';
 import { CreateNftFormService } from '@home/services/create-nft-form.service';
 import { ROOT_REDUCERS } from '@store/root-reducer';
 import { NgModule, isDevMode } from '@angular/core';
@@ -18,14 +18,14 @@ import { HomeFacade } from '@home/home.facade';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeEffects } from '@home_store/home.effects';
 import { NftListResolver } from '@home/resolvers/nft-list.resolver';
-import { FormService } from '@common_services/form.service';
+import { FormService } from '@common/services/form.service';
 import { HomeService } from '@home/services/home.service';
 import { AppFacade } from '@app/app.facade';
 import { Web3Effects } from '@store/web3/web3.effects';
 import { ProfileFacade } from '@profile/profile.facade';
-import { ToastService } from '@common_services/toast.service';
+import { ToastService } from '@common/services/toast.service';
 import { MessageService } from 'primeng/api';
-import { AuthGuard } from '@common_guards/auth.guard';
+import { AuthGuard } from '@common/guards/auth.guard';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MenuLinks } from '@common_models/menu-links.model';
+import { MenuLinks } from '@common/models/menu-links.model';
 
 @Injectable()
 export class MenuService {

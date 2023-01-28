@@ -1,4 +1,4 @@
-import { PRIMENG_UI } from '@common_primeng-ui/primeng-ui';
+import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from '@home/home-routing.module';

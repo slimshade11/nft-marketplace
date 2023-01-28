@@ -23,33 +23,11 @@ export class HomeFacade {
     return this.createNftFormService.getForm$();
   }
 
-  // NgRx Action Dispatchers //
   public dispatchGetNftListAction(): void {
     this.store.dispatch(HomeActions.getNftList());
   }
-  // NgRx Action Dispatchers end //
 
-  // NgRx Selectors //
   public selectNftList$(): Observable<NFT[] | null> {
     return this.store.select(HomeSelectors.nftList);
   }
-  // NgRx Selectors end //
-
-  // NgRx Effects //
-  public getNftListEffect$() {
-    return this.actions$.pipe(
-      ofType(HomeActions.getNftList),
-      switchMap(() => {
-        return this.homeService.getNftList$().pipe(
-          map((nftList: NFT[]) => {
-            return HomeActions.getNftListSuccess({ nftList });
-          }),
-          catchError(() => {
-            return of(HomeActions.getNftListFailure());
-          })
-        );
-      })
-    );
-  }
-  // NgRx Effects end //
 }

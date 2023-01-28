@@ -25,14 +25,13 @@ export const Reducer = createReducer(
   }),
   on(
     Web3Actions.createDefaultStateSuccess,
-    (state, { web3State: { isLoading, isMetamaskInstalled, contract, address } }): State => {
-      return Object.freeze({
+    (state, { web3State: { isLoading, isMetamaskInstalled, contract, address } }): State =>
+      Object.freeze({
         isMetamaskInstalled,
         address,
         contract,
         isLoading,
-      });
-    }
+      })
   ),
   on(Web3Actions.createDefaultStateFailure, (state): State => {
     return { ...state, isLoading: false };
@@ -41,7 +40,6 @@ export const Reducer = createReducer(
     return Object.freeze({ ...state, isLoading: true });
   }),
   on(Web3Actions.accountChangedSuccess, (state, { address }): State => {
-    console.log('address from reducer', address);
     return Object.freeze({ ...state, isLoading: false, address });
   }),
   on(Web3Actions.accountChangedFailure, (state): State => {
