@@ -22,11 +22,11 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent extends DestroyComponent implements OnInit {
   constructor(private appFacade: AppFacade, private store: Store, private primengConfig: PrimeNGConfig) {
     super();
+    this.appFacade.onAccountsChanged$().subscribe();
   }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
     this.store.dispatch(Web3Actions.createDefaultState());
-    this.appFacade.onAccountsChanged$().subscribe();
   }
 }

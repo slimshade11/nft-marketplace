@@ -6,14 +6,14 @@ export const FeatureKey = 'web3';
 
 export interface State {
   isMetamaskInstalled: boolean;
-  address: string;
+  address: string | null;
   contract: Contract | null;
   isLoading: boolean;
 }
 
 const initialState: State = {
   isMetamaskInstalled: false,
-  address: '',
+  address: null,
   contract: null,
   isLoading: false,
 };

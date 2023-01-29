@@ -1,18 +1,18 @@
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap } from '@ngrx/store';
-import * as homeStore from '@store/home';
-import * as web3Store from '@store/web3';
+import * as fromHome from '@store/home';
+import * as fromWeb3 from '@store/web3';
 
 export interface AppState {
-  [homeStore.FeatureKey]: homeStore.State;
-  [web3Store.FeatureKey]: web3Store.State;
+  [fromHome.FeatureKey]: fromHome.State;
+  [fromWeb3.FeatureKey]: fromWeb3.State;
 }
 
 export const ROOT_REDUCER_TOKEN: string = 'Root reducers token';
 
 export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>>(ROOT_REDUCER_TOKEN, {
   factory: () => ({
-    [homeStore.FeatureKey]: homeStore.Reducer,
-    [web3Store.FeatureKey]: web3Store.Reducer,
+    [fromHome.FeatureKey]: fromHome.Reducer,
+    [fromWeb3.FeatureKey]: fromWeb3.Reducer,
   }),
 });

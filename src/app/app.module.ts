@@ -37,6 +37,7 @@ const imports: any[] = [
   FooterComponent,
   HttpClientModule,
   PRIMENG_UI,
+  HttpClientModule,
 
   // NgRx //
   StoreModule.forRoot(ROOT_REDUCERS),
