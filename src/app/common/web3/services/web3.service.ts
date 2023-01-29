@@ -1,12 +1,14 @@
+import { MetamaskEventName } from '@common/web3/enums/metamask-event-name.enum';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '@common/models/app-config.model';
 import { APP_CONFIG_TOKEN } from '@common/config/app.config';
-import { combineLatestWith, from, fromEvent, map, Observable, of, take, tap } from 'rxjs';
+import { forkJoin, fromEvent, map, Observable, tap } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { State as Web3State } from '@store/web3';
 import { Contract, ethers, providers } from 'ethers';
-import { MetamaskEventName } from '@common/web3/enums/metamask-event-name.enum';
+import { Store } from '@ngrx/store';
+import { NftMarket } from '@common/constants/market-contract-name';
 
 declare global {
   interface Window {
@@ -18,9 +20,8 @@ declare global {
 export class Web3Service {
   private ethereum!: MetaMaskInpageProvider;
   private provider!: providers.Web3Provider;
-  public currentAddress!: string;
 
-  constructor(@Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig, private http: HttpClient) {
+  constructor(@Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig, private http: HttpClient, private store: Store) {
     // FIXME: Redux devtool crash on create default state
 
     this.ethereum = window.ethereum;
@@ -29,35 +30,35 @@ export class Web3Service {
     }
   }
 
+  // React source code:
+  // https://github.com/Jerga99/nft-marketplace/blob/a64d2eb30576b44f276ea0748597bca85473b71c/components/hooks/web3/useAccount.ts
+
   public createDefaultWeb3State$(): Observable<Web3State> {
-    return from(this.loadContract('NftMarket', this.provider)).pipe(
-      combineLatestWith(from(this.provider.listAccounts())),
-      map(([contract, accounts]: [Contract | null, string[]]): Web3State => {
+    return forkJoin({
+      contract: this.loadContract(NftMarket),
+      accounts: this.provider.listAccounts(),
+    }).pipe(
+      map(({ contract, accounts }: { contract: Contract | null; accounts: string[] }): Web3State => {
         return {
           isMetamaskInstalled: !!this.ethereum,
           address: accounts[0] ?? null,
-          contract,
+          contract: contract,
           isLoading: false,
         };
       })
     );
   }
 
-  private async loadContract(name: string, provider: providers.Web3Provider): Promise<Contract | null> {
-    let contract: Contract | null = null;
-    const response: Response = await fetch(`/assets/contracts/${name}.json`);
-    const Artifact: any = await response.json();
-
-    if (Artifact.networks[this.appConfig.networkId].address) {
-      contract = new ethers.Contract(Artifact.networks[this.appConfig.networkId].address, Artifact.abi, provider);
-    }
-
-    return contract;
+  private loadContract(name: string): Observable<Contract> {
+    return this.http.get<any>(`/assets/contracts/${name}.json`).pipe(
+      map((artifact: any): Contract => {
+        return new ethers.Contract(artifact.networks[this.appConfig.networkId].address, artifact.abi, this.provider);
+      })
+    );
   }
 
-  public onAccountChanged$(): Observable<string> {
+  public onAccountChanged$(): Observable<string | null> {
     return (fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>).pipe(
-      take(1),
       map((address: string[]) => address[0] ?? null)
     );
   }
