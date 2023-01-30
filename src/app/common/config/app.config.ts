@@ -7,4 +7,5 @@ export const APP_CONFIG_TOKEN: InjectionToken<AppConfig> = new InjectionToken<Ap
 
 export const APP_CONFIG: AppConfig = {
   networkId: 5777,
+  targetChainId: 1337,
 };

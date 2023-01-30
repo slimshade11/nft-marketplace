@@ -2,6 +2,7 @@ import { Address } from '@common/web3/models/address.model';
 import { GetMetamaskStatePayload } from '@common/web3/models/get-metamask-state-payload.model';
 import { createAction, props } from '@ngrx/store';
 import { Web3ActionTypes } from '@web3_store/web3-action-types';
+import { GetChainIdPayload } from '@app/common/web3/models/get-chain-id-payload.model';
 
 // Get metamask state
 export const getMetamaskState = createAction(Web3ActionTypes.GET_METAMASK_STATE);
@@ -23,9 +24,9 @@ export const accountChangedSuccess = createAction(
 export const accountChangedFailure = createAction(Web3ActionTypes.ACCOUNT_CHANGED_FAILURE);
 
 // Get network
-export const getChainId = createAction(Web3ActionTypes.GET_CHAIN_ID);
-export const getChainIdSuccess = createAction(
-  Web3ActionTypes.GET_CHAIN_ID_SUCCESS,
-  props<{ chainId: number | null }>()
+export const getChainData = createAction(Web3ActionTypes.GET_CHAIN_DATA);
+export const getChainDataSuccess = createAction(
+  Web3ActionTypes.GET_CHAIN_DATA_SUCCESS,
+  props<{ getChainIdPayload: GetChainIdPayload }>()
 );
-export const getChainIdFailure = createAction(Web3ActionTypes.GET_CHAIN_ID_FAILURE);
+export const getChainDataFailure = createAction(Web3ActionTypes.GET_CHAIN_DATA_FAILURE);

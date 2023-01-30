@@ -12,14 +12,14 @@ import { Observable } from 'rxjs';
   template: `
     <div class="border rounded-xl py-1 px-3 flex items-center border-[green] bg-green-700">
       <span class="block w-[5px] h-[5px] bg-green-300 rounded-2xl mr-3"></span>
-      <ng-container *ngIf="isLoading$ | async; else loaded">Loading...</ng-container>
+      <ng-container *ngIf="isAddressLoading$ | async; else loaded">Loading...</ng-container>
       <ng-template #loaded>{{ chainId$ | async | networkName }}</ng-template>
     </div>
   `,
 })
 export class NetworkWidgetComponent {
   public chainId$: Observable<number | null> = this.store.select(Web3Selectors.chainId);
-  public isLoading$: Observable<boolean> = this.store.select(Web3Selectors.isLoading);
+  public isAddressLoading$: Observable<boolean> = this.store.select(Web3Selectors.isAddressLoading);
 
   constructor(private store: Store) {}
 }

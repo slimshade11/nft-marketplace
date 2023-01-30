@@ -1,3 +1,4 @@
+import { NETWORKS } from '@common/web3/constants/networks';
 import { Address } from '@common/web3/models/address.model';
 import { MetamaskEventName } from '@common/web3/enums/metamask-event-name.enum';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +9,8 @@ import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { Contract, ethers, providers } from 'ethers';
 import { GetMetamaskStatePayload } from '@common/web3/models/get-metamask-state-payload.model';
+import { ChainId } from '@common/web3/models/chain-id.model';
+import { GetChainIdPayload } from '@common/web3/models/get-chain-id-payload.model';
 
 declare global {
   interface Window {
@@ -17,17 +20,16 @@ declare global {
 
 @Injectable()
 export class Web3Service {
-  private _marketContract$: BehaviorSubject<Readonly<Contract> | null> = new BehaviorSubject<Readonly<Contract> | null>(
-    null
-  );
-  private ethereum!: MetaMaskInpageProvider;
-  public provider!: providers.Web3Provider;
+  private readonly _marketContract$: BehaviorSubject<Readonly<Contract> | null> =
+    new BehaviorSubject<Readonly<Contract> | null>(null);
+
+  private readonly targetNetwork: string = NETWORKS[this.appConfig.targetChainId];
+  private readonly _ethereum: MetaMaskInpageProvider = window.ethereum;
+  public readonly provider!: providers.Web3Provider;
 
   constructor(@Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig, private http: HttpClient) {
-    this.ethereum = window.ethereum;
-
-    if (this.ethereum) {
-      this.provider = new ethers.providers.Web3Provider(this.ethereum as any);
+    if (this._ethereum) {
+      this.provider = new ethers.providers.Web3Provider(this._ethereum as any);
     }
   }
 
@@ -35,7 +37,7 @@ export class Web3Service {
     return from(this.provider.listAccounts()).pipe(
       map((accounts: string[]): GetMetamaskStatePayload => {
         return {
-          isMetamaskInstalled: !!this.ethereum,
+          isMetamaskInstalled: !!this._ethereum,
           address: accounts[0] ?? null,
         };
       })
@@ -54,26 +56,29 @@ export class Web3Service {
   }
 
   public onAccountChanged$(): Observable<Address> {
-    return (fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>).pipe(
+    return (fromEvent(this._ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>).pipe(
       map((address: string[]): Address => address[0] ?? null)
     );
   }
 
   public connectWallet(): void {
     try {
-      this.ethereum.request({ method: 'eth_requestAccounts' });
+      this._ethereum.request({ method: 'eth_requestAccounts' });
     } catch (err: unknown) {
       console.error(err);
     }
   }
 
-  public async getChainId(): Promise<number | null> {
-    let chainId: number | null = null;
-    if (this.provider) {
-      chainId = (await this.provider.getNetwork()).chainId;
-    }
+  public async getChainId(): Promise<GetChainIdPayload> {
+    const chainId: ChainId = (await this.provider.getNetwork()).chainId;
+    const networkName = NETWORKS[chainId];
+    const isNetworkSupported = networkName === this.targetNetwork;
 
-    return chainId;
+    return {
+      chainId,
+      networkName,
+      isNetworkSupported,
+    };
   }
 
   public get marketContract$(): Observable<Readonly<Contract> | null> {

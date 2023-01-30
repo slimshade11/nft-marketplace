@@ -13,8 +13,10 @@ import { NetworkWidgetComponent } from '@standalone/components/network-widget/ne
   imports: [CommonModule, ...PRIMENG_UI, WalletBarComponent, NetworkWidgetComponent],
   providers: [MenuService],
   template: `
-    <div class="p-3">
-      <p-menubar [model]="links[MenuType.DASHBOARD]">
+    <div class="p-3 flex items-center menu-bar">
+      <p-menubar
+        [model]="links[MenuType.DASHBOARD]"
+        class="w-full">
         <div class="flex items-center">
           <nftm-network-widget class="mr-3"></nftm-network-widget>
           <nftm-wallet-bar [links]="links[MenuType.PROFILE]"></nftm-wallet-bar>

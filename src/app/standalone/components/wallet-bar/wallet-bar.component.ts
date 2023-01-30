@@ -12,7 +12,7 @@ import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
   standalone: true,
   imports: [CommonModule, PRIMENG_UI],
   template: `
-    <ng-container *ngIf="isLoading$ | async; else loaded">
+    <ng-container *ngIf="isAddressLoading$ | async; else loaded">
       <button
         pButton
         icon="pi pi-spin pi-spinner"
@@ -58,7 +58,7 @@ export class WalletBarComponent {
   @Input() public links!: MenuItem[];
 
   public address$: Observable<string | null> = this.store.select(Web3Selectors.address);
-  public isLoading$: Observable<boolean> = this.store.select(Web3Selectors.isLoading);
+  public isAddressLoading$: Observable<boolean> = this.store.select(Web3Selectors.isAddressLoading);
 
   constructor(public web3: Web3Service, private store: Store) {}
 }

@@ -1,0 +1,15 @@
+// Variables
+$footerHeight: 60px;
+$menubarHeight: 84px;
+
+.main-content {
+  min-height: calc(100vh - $footerHeight - $menubarHeight - 0.25rem);
+}
+
+.menu-bar {
+  height: $menubarHeight;
+}
+
+footer {
+  height: $footerHeight;
+}

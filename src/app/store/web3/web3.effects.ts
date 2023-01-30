@@ -1,3 +1,4 @@
+import { GetChainIdPayload } from '@common/web3/models/get-chain-id-payload.model';
 import { Web3Actions } from '@store/web3';
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -62,14 +63,14 @@ export class Web3Effects {
 
   getChainIdEffect$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(Web3Actions.getChainId),
+      ofType(Web3Actions.getChainData),
       switchMap(() => {
         return from(this.web3Service.getChainId()).pipe(
-          map((chainId) => {
-            return Web3Actions.getChainIdSuccess({ chainId });
+          map((getChainIdPayload: GetChainIdPayload) => {
+            return Web3Actions.getChainDataSuccess({ getChainIdPayload });
           }),
           catchError(() => {
-            return of(Web3Actions.getChainIdFailure());
+            return of(Web3Actions.getChainDataFailure());
           })
         );
       })

@@ -1,5 +1,5 @@
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { Component, OnInit, Self } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Web3Actions } from '@store/web3';
 import { PrimeNGConfig } from 'primeng/api';
@@ -10,13 +10,14 @@ import { ResolveLoaderService } from '@common/services/resolve-loader.service';
 @Component({
   selector: 'app-root',
   template: `
-    <p-progressBar
-      *ngIf="isLoading$ | async"
-      styleClass="h-[.25rem]"
-      mode="indeterminate"></p-progressBar>
+    <div class="fixed h-[.25rem] top-0 left-0 right-0 overflow-hidden">
+      <p-progressBar
+        *ngIf="isLoading$ | async"
+        mode="indeterminate"></p-progressBar>
+    </div>
     <nftm-navbar></nftm-navbar>
 
-    <main class="max-w-screen-xl px-3 mx-auto ">
+    <main class="max-w-screen-xl px-3 mx-auto main-content">
       <router-outlet></router-outlet>
     </main>
 
