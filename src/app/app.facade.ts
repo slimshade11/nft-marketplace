@@ -19,4 +19,8 @@ export class AppFacade {
       })
     );
   }
+
+  public onChainChanged$() {
+    return this.web3Service.onChainChanged$();
+  }
 }

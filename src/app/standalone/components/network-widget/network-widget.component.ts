@@ -4,22 +4,28 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { ChainId } from '@common/web3/models/chain-id.model';
 
 @Component({
   selector: 'nftm-network-widget',
   standalone: true,
   imports: [CommonModule, NetworkNamePipe],
   template: `
-    <div class="border rounded-xl py-1 px-3 flex items-center border-[green] bg-green-700">
-      <span class="block w-[5px] h-[5px] bg-green-300 rounded-2xl mr-3"></span>
-      <ng-container *ngIf="isAddressLoading$ | async; else loaded">Loading...</ng-container>
-      <ng-template #loaded>{{ chainId$ | async | networkName }}</ng-template>
-    </div>
+    <ng-container *ngIf="isNetworkLoading$ | async; else loaded">Loading...</ng-container>
+    <ng-template #loaded>
+      <div
+        *ngIf="isMetamaskInstalled$ | async"
+        class="border rounded-xl py-1 px-3 flex items-center border-[green] bg-green-700">
+        <span class="block w-[5px] h-[5px] bg-green-300 rounded-2xl mr-3"></span>
+        <span> {{ chainId$ | async | networkName }}</span>
+      </div>
+    </ng-template>
   `,
 })
 export class NetworkWidgetComponent {
-  public chainId$: Observable<number | null> = this.store.select(Web3Selectors.chainId);
-  public isAddressLoading$: Observable<boolean> = this.store.select(Web3Selectors.isAddressLoading);
+  public chainId$: Observable<ChainId> = this.store.select(Web3Selectors.chainId);
+  public isMetamaskInstalled$: Observable<boolean> = this.store.select(Web3Selectors.isMetamaskInstalled);
+  public isNetworkLoading$: Observable<boolean> = this.store.select(Web3Selectors.isNetworkLoading);
 
   constructor(private store: Store) {}
 }

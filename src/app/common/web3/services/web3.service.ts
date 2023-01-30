@@ -23,7 +23,7 @@ export class Web3Service {
   private readonly _marketContract$: BehaviorSubject<Readonly<Contract> | null> =
     new BehaviorSubject<Readonly<Contract> | null>(null);
 
-  private readonly targetNetwork: string = NETWORKS[this.appConfig.targetChainId];
+  private readonly _targetNetwork: string = NETWORKS[this.appConfig.targetChainId];
   private readonly _ethereum: MetaMaskInpageProvider = window.ethereum;
   public readonly provider!: providers.Web3Provider;
 
@@ -34,6 +34,14 @@ export class Web3Service {
   }
 
   public getMetamaskState$(): Observable<GetMetamaskStatePayload> {
+    if (!this.provider) {
+      console.error('Install Metamask');
+      return of({
+        address: null,
+        isMetamaskInstalled: !!this._ethereum,
+      });
+    }
+
     return from(this.provider.listAccounts()).pipe(
       map((accounts: string[]): GetMetamaskStatePayload => {
         return {
@@ -56,6 +64,11 @@ export class Web3Service {
   }
 
   public onAccountChanged$(): Observable<Address> {
+    if (!this._ethereum) {
+      console.error('Install Metamask');
+      return of(null);
+    }
+
     return (fromEvent(this._ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>).pipe(
       map((address: string[]): Address => address[0] ?? null)
     );
@@ -72,16 +85,17 @@ export class Web3Service {
   public async getChainId(): Promise<GetChainIdPayload> {
     const chainId: ChainId = (await this.provider.getNetwork()).chainId;
     const networkName = NETWORKS[chainId];
-    const isNetworkSupported = networkName === this.targetNetwork;
+    const isNetworkSupported = networkName === this._targetNetwork;
 
-    return {
-      chainId,
-      networkName,
-      isNetworkSupported,
-    };
+    return { chainId, networkName, isNetworkSupported };
   }
 
-  public get marketContract$(): Observable<Readonly<Contract> | null> {
-    return this._marketContract$.asObservable();
+  public onChainChanged$() {
+    if (!this._ethereum) {
+      console.error('Install Metamask');
+      return of(null);
+    }
+
+    return fromEvent(this._ethereum, MetamaskEventName.CHAIN_CHANGED).pipe(tap((): void => window.location.reload()));
   }
 }
