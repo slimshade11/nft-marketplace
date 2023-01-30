@@ -11,6 +11,7 @@ import { RippleModule } from 'primeng/ripple';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 export const PRIMENG_UI: any[] = [
   ButtonModule,
@@ -26,4 +27,5 @@ export const PRIMENG_UI: any[] = [
   FileUploadModule,
   ToastModule,
   TooltipModule,
+  ProgressBarModule,
 ];

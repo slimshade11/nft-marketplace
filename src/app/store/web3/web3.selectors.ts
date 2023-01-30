@@ -1,11 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { FeatureKey, State } from '@web3_store/web3.reducer';
+import { FeatureKey, State as Web3State } from '@web3_store/web3.reducer';
 
-export const Web3State = createFeatureSelector<State>(FeatureKey);
+export const Web3StateSelector = createFeatureSelector<Web3State>(FeatureKey);
 
-export const isLoading = createSelector(Web3State, ({ isLoading }: State): boolean => isLoading);
-export const address = createSelector(Web3State, ({ address }: State): string | null => address);
+export const isLoading = createSelector(Web3StateSelector, ({ isLoading }: Web3State): boolean => isLoading);
+export const address = createSelector(Web3StateSelector, ({ address }: Web3State): string | null => address);
+export const chainId = createSelector(Web3StateSelector, ({ chainId }: Web3State): number | null => chainId);
 export const isMetamaskInstalled = createSelector(
-  Web3State,
-  ({ isMetamaskInstalled }: State): boolean => isMetamaskInstalled
+  Web3StateSelector,
+  ({ isMetamaskInstalled }: Web3State): boolean => isMetamaskInstalled
 );

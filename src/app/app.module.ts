@@ -1,3 +1,4 @@
+import { ResolveLoaderService } from '@common/services/resolve-loader.service';
 import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
 import { APP_CONFIG, APP_CONFIG_TOKEN } from '@common/config/app.config';
 import { Web3Service } from '@common/web3/services/web3.service';
@@ -62,6 +63,7 @@ const providers: any[] = [
   MessageService,
   AuthGuard,
   PersistanceService,
+  ResolveLoaderService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

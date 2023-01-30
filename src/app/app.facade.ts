@@ -9,7 +9,7 @@ import { Address } from '@common/web3/models/address.model';
 export class AppFacade {
   constructor(private store: Store, private web3Service: Web3Service) {}
 
-  onAccountChanged$(): Observable<[Address, Address]> {
+  public onAccountChanged$(): Observable<[Address, Address]> {
     return this.web3Service.onAccountChanged$().pipe(
       combineLatestWith(this.store.select(Web3Selectors.address)),
       tap(([updatedAddress, currentAddress]: [Address, Address]): void => {

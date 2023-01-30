@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { NFT } from '@home/models/nft.model';
 import { ActivatedRoute, Data } from '@angular/router';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 
 @Component({
   selector: 'nftm-nft-list',
@@ -16,14 +15,8 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
     </div>
   `,
 })
-export class NftListComponent extends DestroyComponent implements OnInit {
-  public nftList$!: Observable<NFT[]>;
+export class NftListComponent {
+  public nftList$: Observable<NFT[]> = this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    super();
-  }
-
-  ngOnInit(): void {
-    this.nftList$ = this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
-  }
+  constructor(private activatedRoute: ActivatedRoute) {}
 }
