@@ -28,6 +28,7 @@ export class AppComponent extends DestroyComponent implements OnInit {
     this.primengConfig.ripple = true;
     this.store.dispatch(Web3Actions.getMetamaskState());
     this.store.dispatch(Web3Actions.loadContract());
+    this.store.dispatch(Web3Actions.getChainId());
     this.appFacade.onAccountChanged$().subscribe();
   }
 }

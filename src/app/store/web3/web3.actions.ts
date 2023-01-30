@@ -21,3 +21,11 @@ export const accountChangedSuccess = createAction(
   props<{ address: Address }>()
 );
 export const accountChangedFailure = createAction(Web3ActionTypes.ACCOUNT_CHANGED_FAILURE);
+
+// Get network
+export const getChainId = createAction(Web3ActionTypes.GET_CHAIN_ID);
+export const getChainIdSuccess = createAction(
+  Web3ActionTypes.GET_CHAIN_ID_SUCCESS,
+  props<{ chainId: number | null }>()
+);
+export const getChainIdFailure = createAction(Web3ActionTypes.GET_CHAIN_ID_FAILURE);

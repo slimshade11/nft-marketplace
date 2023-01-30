@@ -3,7 +3,7 @@ import { MetamaskEventName } from '@common/web3/enums/metamask-event-name.enum';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '@common/models/app-config.model';
 import { APP_CONFIG_TOKEN } from '@common/config/app.config';
-import { BehaviorSubject, fromEvent, from, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, fromEvent, from, map, Observable, tap, of } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { Contract, ethers, providers } from 'ethers';
@@ -65,6 +65,15 @@ export class Web3Service {
     } catch (err: unknown) {
       console.error(err);
     }
+  }
+
+  public async getChainId(): Promise<number | null> {
+    let chainId: number | null = null;
+    if (this.provider) {
+      chainId = (await this.provider.getNetwork()).chainId;
+    }
+
+    return chainId;
   }
 
   public get marketContract$(): Observable<Readonly<Contract> | null> {

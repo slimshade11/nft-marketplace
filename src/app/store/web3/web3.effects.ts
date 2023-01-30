@@ -1,8 +1,8 @@
+import { Web3Actions } from '@store/web3';
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, switchMap, take, tap } from 'rxjs';
-import { Web3Actions } from '.';
+import { catchError, from, map, of, switchMap, take, tap } from 'rxjs';
 import { Web3Service } from '@common/web3/services/web3.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import { GetMetamaskStateError } from '@common/web3/toast-messages/get-metamask-state-error';
@@ -54,6 +54,22 @@ export class Web3Effects {
           }),
           catchError(() => {
             return of(Web3Actions.accountChangedFailure());
+          })
+        );
+      })
+    );
+  });
+
+  getChainIdEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(Web3Actions.getChainId),
+      switchMap(() => {
+        return from(this.web3Service.getChainId()).pipe(
+          map((chainId) => {
+            return Web3Actions.getChainIdSuccess({ chainId });
+          }),
+          catchError(() => {
+            return of(Web3Actions.getChainIdFailure());
           })
         );
       })

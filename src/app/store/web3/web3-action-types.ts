@@ -8,4 +8,8 @@ export enum Web3ActionTypes {
   ACCOUNT_CHANGED = '[Web3] Account changed',
   ACCOUNT_CHANGED_SUCCESS = '[Web3] Account changed success',
   ACCOUNT_CHANGED_FAILURE = '[Web3] Account changed failure',
+
+  GET_CHAIN_ID = '[Web3] Get chainId',
+  GET_CHAIN_ID_SUCCESS = '[Web3] Get chainId success',
+  GET_CHAIN_ID_FAILURE = '[Web3] Get chainId failure',
 }

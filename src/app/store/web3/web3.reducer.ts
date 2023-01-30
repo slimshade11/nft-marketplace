@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-import { Contract } from 'ethers';
 import { Web3Actions } from '@store/web3';
 
 export const FeatureKey = 'web3';
@@ -7,15 +6,15 @@ export const FeatureKey = 'web3';
 export interface State {
   isMetamaskInstalled: boolean;
   address: string | null;
-  contract: Readonly<Contract> | null;
+  chainId: number | null;
   isLoading: boolean;
 }
 
 const initialState: State = {
   isMetamaskInstalled: false,
   address: null,
-  contract: null,
   isLoading: false,
+  chainId: null,
 };
 
 export const Reducer = createReducer(
@@ -49,5 +48,16 @@ export const Reducer = createReducer(
   }),
   on(Web3Actions.accountChangedFailure, (state): State => {
     return { ...state, isLoading: false };
+  }),
+
+  // Get chainId
+  on(Web3Actions.getChainId, (state): State => {
+    return { ...state };
+  }),
+  on(Web3Actions.getChainIdSuccess, (state, { chainId }): State => {
+    return { ...state, chainId };
+  }),
+  on(Web3Actions.getChainIdFailure, (state): State => {
+    return { ...state };
   })
 );
