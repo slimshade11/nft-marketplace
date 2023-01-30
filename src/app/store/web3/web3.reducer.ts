@@ -40,17 +40,6 @@ export const Reducer = createReducer(
     return { ...state, isLoading: false };
   }),
 
-  // Load Contract
-  on(Web3Actions.loadContract, (state): State => {
-    return { ...state, isLoading: true };
-  }),
-  on(Web3Actions.loadContractSuccess, (state, { contract }): State => {
-    return { ...state, isLoading: false, contract };
-  }),
-  on(Web3Actions.loadContractFailure, (state): State => {
-    return { ...state, isLoading: false };
-  }),
-
   // AccountChanged
   on(Web3Actions.accountChanged, (state): State => {
     return { ...state, isLoading: true };

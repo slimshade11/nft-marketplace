@@ -2,13 +2,13 @@ import { MetamaskEventName } from '@common/web3/enums/metamask-event-name.enum';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '@common/models/app-config.model';
 import { APP_CONFIG_TOKEN } from '@common/config/app.config';
-import { from, fromEvent, map, Observable, take, tap } from 'rxjs';
+import { BehaviorSubject, from, fromEvent, map, Observable, tap } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { Contract, ethers, providers } from 'ethers';
 import { Store } from '@ngrx/store';
-import { GetMetamaskStatePaylaod } from '@common/web3/models/get-metamask-state-payload.model';
-import { Web3Actions } from '@app/store/web3';
+import { GetMetamaskStatePayload } from '@common/web3/models/get-metamask-state-payload.model';
+import { Web3Actions } from '@store/web3';
 
 declare global {
   interface Window {
@@ -18,6 +18,9 @@ declare global {
 
 @Injectable()
 export class Web3Service {
+  private _marketContract$: BehaviorSubject<Readonly<Contract> | null> = new BehaviorSubject<Readonly<Contract> | null>(
+    null
+  );
   private ethereum!: MetaMaskInpageProvider;
   private provider!: providers.Web3Provider;
 
@@ -28,9 +31,9 @@ export class Web3Service {
     }
   }
 
-  public getMetamaskState$(): Observable<GetMetamaskStatePaylaod> {
+  public getMetamaskState$(): Observable<GetMetamaskStatePayload> {
     return from(this.provider.listAccounts()).pipe(
-      map((accounts: string[]): GetMetamaskStatePaylaod => {
+      map((accounts: string[]): GetMetamaskStatePayload => {
         return {
           isMetamaskInstalled: !!this.ethereum,
           address: accounts[0] ?? null,
@@ -41,12 +44,14 @@ export class Web3Service {
 
   public loadContract$(name: string): Observable<Readonly<Contract>> {
     return this.http.get<any>(`/assets/contracts/${name}.json`).pipe(
-      take(1),
-      map((artifact: any): Readonly<Contract> => {
-        return Object.freeze(
-          new ethers.Contract(artifact.networks[this.appConfig.networkId].address, artifact.abi, this.provider)
-        );
-      })
+      map((artifact: any) => {
+        return new ethers.Contract(
+          artifact.networks[this.appConfig.networkId].address,
+          artifact.abi,
+          this.provider
+        ) as Readonly<Contract>;
+      }),
+      tap((contract: Readonly<Contract>) => this._marketContract$.next(contract))
     );
   }
 
@@ -65,5 +70,9 @@ export class Web3Service {
     } catch (err: unknown) {
       console.error(err);
     }
+  }
+
+  public get marketContract$(): Observable<Readonly<Contract> | null> {
+    return this._marketContract$.asObservable();
   }
 }

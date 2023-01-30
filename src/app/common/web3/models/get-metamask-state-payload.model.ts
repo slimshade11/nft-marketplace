@@ -1,4 +1,4 @@
-export interface GetMetamaskStatePaylaod {
+export interface GetMetamaskStatePayload {
   address: string;
   isMetamaskInstalled: boolean;
 }

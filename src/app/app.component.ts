@@ -22,12 +22,15 @@ import { Web3Service } from '@common/web3/services/web3.service';
 export class AppComponent extends DestroyComponent implements OnInit {
   constructor(private store: Store, private primengConfig: PrimeNGConfig, private web3Service: Web3Service) {
     super();
-    this.store.dispatch(Web3Actions.loadContract());
   }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
     this.web3Service.onAccountChanged$().subscribe();
     this.store.dispatch(Web3Actions.getMetamaskState());
+    this.store.dispatch(Web3Actions.loadContract());
+
+    // log contract
+    this.web3Service.marketContract$.subscribe((res) => console.log(res));
   }
 }

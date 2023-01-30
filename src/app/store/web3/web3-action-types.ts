@@ -4,8 +4,6 @@ export enum Web3ActionTypes {
   GET_METAMASK_STATE_FAILURE = '[Web3] Get metamask state failure',
 
   LOAD_CONTRACT = '[Web3] Load contract',
-  LOAD_CONTRACT_SUCCESS = '[Web3] Load contract success',
-  LOAD_CONTRACT_FAILURE = '[Web3] Load contract failure',
 
   ACCOUNT_CHANGED = '[Web3] Account changed',
   ACCOUNT_CHANGED_SUCCESS = '[Web3] Account changed success',
