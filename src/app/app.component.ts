@@ -47,6 +47,6 @@ export class AppComponent extends DestroyComponent implements OnInit {
   private dispatchStoreActions(): void {
     this.store.dispatch(Web3Actions.getMetamaskState());
     this.store.dispatch(Web3Actions.loadContract());
-    this.store.dispatch(Web3Actions.getChainId());
+    this.store.dispatch(Web3Actions.getChainData());
   }
 }
