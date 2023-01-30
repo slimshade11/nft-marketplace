@@ -1,26 +1,51 @@
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, take } from 'rxjs';
 import { Web3Actions } from '.';
 import { Web3Service } from '@common/web3/services/web3.service';
-import { State as Web3State } from '@store/web3';
 import { ToastStatus } from '@common/enums/toast-status.enum';
-import { ErrorFetchWeb3Data } from '@common/web3/toast-messages/error-fetch-web3-data';
+import { GetMetamaskStateError } from '@common/web3/toast-messages/get-metamask-state-error';
+import { NftMarket } from '@common/constants/market-contract-name';
+import { Contract } from 'ethers';
+import { GetMetamaskStatePaylaod } from '@common/web3/models/get-metamask-state-payload.model';
+import { LoadContractError } from '@common/web3/toast-messages/load-contract-error';
 
 @Injectable()
 export class Web3Effects {
   createDefaultStateEffect$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(Web3Actions.createDefaultState),
+      ofType(Web3Actions.getMetamaskState),
       switchMap(() => {
-        return this.web3Service.createDefaultWeb3State$().pipe(
-          map((web3State: Web3State) => {
-            return Web3Actions.createDefaultStateSuccess({ web3State: Object.freeze(web3State) });
+        return this.web3Service.getMetamaskState$().pipe(
+          map((metamaskStatePayload: GetMetamaskStatePaylaod) => {
+            return Web3Actions.getMetamaskStateSuccess({ metamaskStatePayload });
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, ErrorFetchWeb3Data.severity, ErrorFetchWeb3Data.details);
-            return of(Web3Actions.createDefaultStateFailure());
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              GetMetamaskStateError.severity,
+              GetMetamaskStateError.details
+            );
+            return of(Web3Actions.getMetamaskStateFailure());
+          })
+        );
+      })
+    );
+  });
+
+  loadContractEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(Web3Actions.loadContract),
+      take(1),
+      switchMap(() => {
+        return this.web3Service.loadContract$(NftMarket).pipe(
+          map((contract: Readonly<Contract>) => {
+            return Web3Actions.loadContractSuccess({ contract });
+          }),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, LoadContractError.severity, LoadContractError.details);
+            return of(Web3Actions.loadContractFailure());
           })
         );
       })
@@ -32,8 +57,8 @@ export class Web3Effects {
       ofType(Web3Actions.accountChanged),
       switchMap(({ address }) => {
         return of(address).pipe(
-          map((address: string) => {
-            return Web3Actions.accountChangedSuccess({ address: Object.freeze(address) });
+          map((address: string | null) => {
+            return Web3Actions.accountChangedSuccess({ address });
           }),
           catchError(() => {
             return of(Web3Actions.accountChangedFailure());

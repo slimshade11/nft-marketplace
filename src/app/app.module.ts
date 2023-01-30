@@ -26,6 +26,7 @@ import { ProfileFacade } from '@profile/profile.facade';
 import { ToastService } from '@common/services/toast.service';
 import { MessageService } from 'primeng/api';
 import { AuthGuard } from '@common/guards/auth.guard';
+import { PersistanceService } from '@common/services/persistance.service';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -60,6 +61,7 @@ const providers: any[] = [
   ToastService,
   MessageService,
   AuthGuard,
+  PersistanceService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

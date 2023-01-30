@@ -1,7 +1,11 @@
 export enum Web3ActionTypes {
-  CREATE_DEFAULT_STATE = '[Web3] Create default state',
-  CREATE_DEFAULT_STATE_SUCCESS = '[Web3] Create default state success',
-  CREATE_DEFAULT_STATE_FAILURE = '[Web3] Create default state failure',
+  GET_METAMASK_STATE = '[Web3] Get metamask state',
+  GET_METAMASK_STATE_SUCCESS = '[Web3] Get metamask state success',
+  GET_METAMASK_STATE_FAILURE = '[Web3] Get metamask state failure',
+
+  LOAD_CONTRACT = '[Web3] Load contract',
+  LOAD_CONTRACT_SUCCESS = '[Web3] Load contract success',
+  LOAD_CONTRACT_FAILURE = '[Web3] Load contract failure',
 
   ACCOUNT_CHANGED = '[Web3] Account changed',
   ACCOUNT_CHANGED_SUCCESS = '[Web3] Account changed success',

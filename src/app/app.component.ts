@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Web3Actions } from '@store/web3';
 import { PrimeNGConfig } from 'primeng/api';
-import { Web3Service } from './common/web3/services/web3.service';
-import { takeUntil, tap } from 'rxjs';
+import { Web3Service } from '@common/web3/services/web3.service';
 
 @Component({
   selector: 'app-root',
@@ -23,23 +22,12 @@ import { takeUntil, tap } from 'rxjs';
 export class AppComponent extends DestroyComponent implements OnInit {
   constructor(private store: Store, private primengConfig: PrimeNGConfig, private web3Service: Web3Service) {
     super();
+    this.store.dispatch(Web3Actions.loadContract());
   }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.store.dispatch(Web3Actions.createDefaultState());
-    this.listenForAccountChange();
-  }
-
-  private listenForAccountChange(): void {
-    this.web3Service
-      .onAccountChanged$()
-      .pipe(
-        tap((address: string | null): void => {
-          address && this.store.dispatch(Web3Actions.accountChanged({ address }));
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe();
+    this.web3Service.onAccountChanged$().subscribe();
+    this.store.dispatch(Web3Actions.getMetamaskState());
   }
 }
