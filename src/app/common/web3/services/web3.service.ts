@@ -1,14 +1,13 @@
+import { Address } from '@common/web3/models/address.model';
 import { MetamaskEventName } from '@common/web3/enums/metamask-event-name.enum';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '@common/models/app-config.model';
 import { APP_CONFIG_TOKEN } from '@common/config/app.config';
-import { BehaviorSubject, from, fromEvent, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, fromEvent, from, map, Observable, tap } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { MetaMaskInpageProvider } from '@metamask/providers';
 import { Contract, ethers, providers } from 'ethers';
-import { Store } from '@ngrx/store';
 import { GetMetamaskStatePayload } from '@common/web3/models/get-metamask-state-payload.model';
-import { Web3Actions } from '@store/web3';
 
 declare global {
   interface Window {
@@ -22,10 +21,11 @@ export class Web3Service {
     null
   );
   private ethereum!: MetaMaskInpageProvider;
-  private provider!: providers.Web3Provider;
+  public provider!: providers.Web3Provider;
 
-  constructor(@Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig, private http: HttpClient, private store: Store) {
+  constructor(@Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig, private http: HttpClient) {
     this.ethereum = window.ethereum;
+
     if (this.ethereum) {
       this.provider = new ethers.providers.Web3Provider(this.ethereum as any);
     }
@@ -44,23 +44,18 @@ export class Web3Service {
 
   public loadContract$(name: string): Observable<Readonly<Contract>> {
     return this.http.get<any>(`/assets/contracts/${name}.json`).pipe(
-      map((artifact: any) => {
-        return new ethers.Contract(
-          artifact.networks[this.appConfig.networkId].address,
-          artifact.abi,
-          this.provider
-        ) as Readonly<Contract>;
+      map((artifact: any): Readonly<Contract> => {
+        return new ethers.Contract(artifact.networks[this.appConfig.networkId].address, artifact.abi, this.provider);
       }),
-      tap((contract: Readonly<Contract>) => this._marketContract$.next(contract))
+      tap((contract: Readonly<Contract>): void => {
+        this._marketContract$.next(contract);
+      })
     );
   }
 
-  public onAccountChanged$(): Observable<string | null> {
+  public onAccountChanged$(): Observable<Address> {
     return (fromEvent(this.ethereum, MetamaskEventName.ACCOUNTS_CHANGED) as Observable<string[]>).pipe(
-      map((address: string[]): string | null => address[0] ?? null),
-      tap((address: string | null): void => {
-        this.store.dispatch(Web3Actions.accountChanged({ address }));
-      })
+      map((address: string[]): Address => address[0] ?? null)
     );
   }
 

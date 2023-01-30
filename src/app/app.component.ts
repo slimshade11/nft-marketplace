@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Web3Actions } from '@store/web3';
 import { PrimeNGConfig } from 'primeng/api';
-import { Web3Service } from '@common/web3/services/web3.service';
+import { AppFacade } from '@app/app.facade';
 
 @Component({
   selector: 'app-root',
@@ -20,17 +20,14 @@ import { Web3Service } from '@common/web3/services/web3.service';
   `,
 })
 export class AppComponent extends DestroyComponent implements OnInit {
-  constructor(private store: Store, private primengConfig: PrimeNGConfig, private web3Service: Web3Service) {
+  constructor(private store: Store, private primengConfig: PrimeNGConfig, private appFacade: AppFacade) {
     super();
   }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.web3Service.onAccountChanged$().subscribe();
     this.store.dispatch(Web3Actions.getMetamaskState());
     this.store.dispatch(Web3Actions.loadContract());
-
-    // log contract
-    this.web3Service.marketContract$.subscribe((res) => console.log(res));
+    this.appFacade.onAccountChanged$().subscribe();
   }
 }

@@ -8,11 +8,10 @@ import { ToastStatus } from '@common/enums/toast-status.enum';
 import { GetMetamaskStateError } from '@common/web3/toast-messages/get-metamask-state-error';
 import { NftMarket } from '@common/constants/market-contract-name';
 import { GetMetamaskStatePayload } from '@common/web3/models/get-metamask-state-payload.model';
-import { LoadContractError } from '@common/web3/toast-messages/load-contract-error';
 
 @Injectable()
 export class Web3Effects {
-  createDefaultStateEffect$ = createEffect(() => {
+  getMetamaskStateEffect$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(Web3Actions.getMetamaskState),
       switchMap(() => {
