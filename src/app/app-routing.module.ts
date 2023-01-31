@@ -10,9 +10,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: (): Promise<any> => import('@home/home.module').then(({ HomeModule }): HomeModule => HomeModule),
-    resolve: {
-      nftList: NftListResolver,
-    },
+    resolve: { nftList: NftListResolver },
   },
   {
     path: 'create',
@@ -24,9 +22,7 @@ const routes: Routes = [
     loadChildren: (): Promise<any> =>
       import('@profile/profile.module').then(({ ProfileModule }): ProfileModule => ProfileModule),
     canMatch: [AuthGuard],
-    resolve: {
-      nftList: NftListResolver,
-    },
+    resolve: { nftList: NftListResolver },
   },
 ];
 
