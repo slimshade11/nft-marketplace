@@ -5,6 +5,6 @@ import { CommonModule } from '@angular/common';
   selector: 'nftm-footer',
   standalone: true,
   imports: [CommonModule],
-  template: `<footer class="flex items-center justify-center">NFT Marketplace [2023]</footer> `,
+  template: `<footer class="flex items-center justify-center bg-slate-800">NFT Marketplace [2023]</footer> `,
 })
 export class FooterComponent {}

@@ -15,7 +15,7 @@ import { ChainId } from '@common/web3/models/chain-id.model';
     <ng-template #loaded>
       <div
         *ngIf="isMetamaskInstalled$ | async"
-        class="border rounded-xl py-1 px-3 flex items-center border-[green] bg-green-700">
+        class="flex items-center py-1 px-3  border-[green] bg-green-700 border rounded-xl ">
         <span class="block w-[5px] h-[5px] bg-green-300 rounded-2xl mr-3"></span>
         <span> {{ chainId$ | async | networkName }}</span>
       </div>
