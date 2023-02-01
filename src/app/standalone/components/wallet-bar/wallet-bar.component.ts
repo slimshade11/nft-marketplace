@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Web3Service } from '@common/web3/services/web3.service';
 import { Web3Selectors } from '@app/store/web3';
@@ -17,11 +17,12 @@ import { Address } from '@common/web3/models/address.model';
   templateUrl: './wallet-bar.component.html',
 })
 export class WalletBarComponent extends DestroyComponent implements OnInit {
-  public profileLinks!: MenuItem[];
-  public address: Address = null;
   public isAddressLoading$: Observable<boolean> = this.store.select(Web3Selectors.isAddressLoading);
 
-  constructor(public web3: Web3Service, private store: Store, private menuService: MenuService) {
+  public profileLinks!: MenuItem[];
+  public address: Address = null;
+
+  constructor(@Self() private menuService: MenuService, public web3: Web3Service, private store: Store) {
     super();
   }
 

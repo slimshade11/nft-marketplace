@@ -9,11 +9,22 @@ import { NavbarComponent } from '@standalone/components/navbar/navbar.component'
 import { FooterComponent } from '@standalone/components/footer/footer.component';
 import { ToastModule } from 'primeng/toast';
 import { Component, OnDestroy } from '@angular/core';
+import { ResolveLoaderService } from '@common/services/resolve-loader.service';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Web3Service } from '@common/web3/services/web3.service';
 
 @Component({ template: '' })
 class TestComponentErrorOnDestroy implements OnDestroy {
   ngOnDestroy() {}
 }
+
+class MockResolveLoaderService {
+  handleResolveProgressBarVisibility$(): Observable<boolean> {
+    return of();
+  }
+}
+
+class MockWeb3Service {}
 
 class MockAppFacade {
   dispatchGetDefaultWeb3StateAction(): void {}
@@ -26,11 +37,19 @@ class MockAppFacade {
 }
 
 describe('AppComponent', () => {
+  let initialState = {};
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, NavbarComponent, FooterComponent, ToastModule],
       declarations: [AppComponent],
-      providers: [{ provide: AppFacade, useClass: MockAppFacade }, MessageService],
+      providers: [
+        { provide: AppFacade, useClass: MockAppFacade },
+        { provide: ResolveLoaderService, useClass: MockResolveLoaderService },
+        { provide: Web3Service, useClass: MockWeb3Service },
+        provideMockStore({ initialState }),
+        MessageService,
+      ],
     }).compileComponents();
   });
 
