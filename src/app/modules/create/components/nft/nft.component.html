@@ -1,6 +1,8 @@
 <div class="flex flex-wrap">
-  <div class="w-full lg:w-[40%]">
+  <div class="w-full lg:w-[40%] border">
     <div>Do you have meta data already?</div>
+    <!-- //TODO: implement left nft ui -->
+    <h3>...TODO...</h3>
   </div>
   <div class="w-full lg:w-[60%] pt-8">
     <form
@@ -19,11 +21,11 @@
         placeholder="Description"
         formControlName="description"
         pInputTextarea></textarea>
-      <small class="text-gray-500">Brief description of NFT</small>
-      <div class="h-[250px] rounded-md flex items-center justify-center mt-8 upload">
+      <small class="placeholder-color">Brief description of NFT</small>
+      <div class="h-[250px] rounded-md flex items-center justify-center mt-8 upload border input-bcg">
         <div class="flex flex-col items-center">
-          <i class="pi pi-image text-stone-300 text-3xl"></i>
-          <span class="text-stone-300">Upload a file</span>
+          <i class="pi pi-image text-3xl"></i>
+          <span class="placeholder-color">Upload a file</span>
           <p-fileUpload
             (onUpload)="onNftUpload($event)"
             [auto]="true"

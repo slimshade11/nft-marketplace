@@ -1,13 +1,14 @@
-// Variables
-$footerHeight: 60px;
-$menubarHeight: 84px;
-
+@use 'themes/variables' as *;
 .main-content {
   min-height: calc(100vh - $footerHeight - $menubarHeight - 0.25rem);
 }
 
 .menu-bar {
   height: $menubarHeight;
+}
+
+.box-shadow {
+  box-shadow: 1px 1px 1px 1px #ddd;
 }
 
 footer {

@@ -1,9 +1,10 @@
+import { NetworkWidgetComponent } from '@standalone/components/network-widget/network-widget.component';
+import { PersistanceService } from '@common/services/persistance.service';
 import { WalletBarComponent } from '@standalone/components/wallet-bar/wallet-bar.component';
 import { MenuService } from '@common/services/menu.service';
 import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
 import { Component, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NetworkWidgetComponent } from '@standalone/components/network-widget/network-widget.component';
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '@common/services/theme.service';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'nft-navbar',
   standalone: true,
   imports: [CommonModule, ...PRIMENG_UI, WalletBarComponent, NetworkWidgetComponent, FormsModule],
-  providers: [MenuService],
+  providers: [MenuService, ThemeService],
   template: `
     <div class="p-3 flex items-center menu-bar">
       <p-menubar
@@ -37,9 +38,18 @@ export class NavbarComponent implements OnInit {
   public dashboardLinks: MenuItem[] = this.menuService.setDashboardLinks();
   public isLightMode!: boolean;
 
-  constructor(@Self() private menuService: MenuService, public themeService: ThemeService) {}
+  constructor(
+    @Self() public themeService: ThemeService,
+    @Self() private menuService: MenuService,
+    private persistanceService: PersistanceService
+  ) {}
 
   public ngOnInit(): void {
-    this.themeService.handleThemeMode(this.isLightMode);
+    this.checkThemeMode();
+  }
+
+  public checkThemeMode(): void {
+    this.isLightMode = this.persistanceService.get('isLightMode');
+    this.themeService.setTheme(this.isLightMode);
   }
 }

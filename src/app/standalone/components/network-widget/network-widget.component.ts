@@ -20,7 +20,7 @@ import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
         [label]="chainId$ | async | networkName"
         disabled
         pButton>
-        <span class="block w-[5px] h-[5px] bg-green-600 rounded-2xl mr-3"></span>
+        <span class="block w-[5px] h-[5px] rounded-2xl mr-3 network-indicator-color"></span>
         <span> </span>
       </button>
     </ng-template>

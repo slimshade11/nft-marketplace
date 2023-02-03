@@ -29,6 +29,8 @@
               "node_modules/primeng/resources/primeng.min.css",
               "src/assets/styles/tailwind/tailwind.css",
               "src/assets/styles/primeng-custom/index.scss",
+              "src/assets/styles/themes/custom-styles.scss",
+              "src/assets/styles/themes/dark-mode-custom-styles.scss",
               "src/styles.scss",
               {
                 "input": "src/assets/styles/themes/dark.scss",
