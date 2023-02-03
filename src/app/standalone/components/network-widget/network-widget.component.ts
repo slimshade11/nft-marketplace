@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { ChainId } from '@common/web3/models/chain-id.model';
 
 @Component({
-  selector: 'nftm-network-widget',
+  selector: 'nft-network-widget',
   standalone: true,
   imports: [CommonModule, NetworkNamePipe],
   template: `

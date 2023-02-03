@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HomeFacade } from '@home/home.facade';
 
 @Component({
-  selector: 'nftm-nft',
+  selector: 'nft-nft',
   templateUrl: './nft.component.html',
   styleUrls: ['./nft.component.scss'],
 })

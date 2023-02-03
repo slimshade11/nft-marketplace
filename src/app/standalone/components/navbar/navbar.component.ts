@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NetworkWidgetComponent } from '@standalone/components/network-widget/network-widget.component';
 import { MenuItem } from 'primeng/api';
 @Component({
-  selector: 'nftm-navbar',
+  selector: 'nft-navbar',
   standalone: true,
   imports: [CommonModule, ...PRIMENG_UI, WalletBarComponent, NetworkWidgetComponent],
   providers: [MenuService],
@@ -16,8 +16,8 @@ import { MenuItem } from 'primeng/api';
         [model]="dashboardLinks"
         class="w-full">
         <div class="flex items-center">
-          <nftm-network-widget class="mr-3"></nftm-network-widget>
-          <nftm-wallet-bar></nftm-wallet-bar>
+          <nft-network-widget class="mr-3"></nft-network-widget>
+          <nft-wallet-bar></nft-wallet-bar>
         </div>
       </p-menubar>
     </div>

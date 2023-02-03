@@ -10,6 +10,6 @@ export class HomeFacade {
 
   public getCreateNftForm$(): Observable<FormGroup<CreateNftForm>> {
     this.createNftFormService.buildForm();
-    return this.createNftFormService.getForm$();
+    return this.createNftFormService.form$;
   }
 }

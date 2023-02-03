@@ -15,7 +15,7 @@ export abstract class FormService {
     this._form$.next(this._form);
   }
 
-  getForm$(): Observable<FormGroup<any>> {
+  public get form$(): Observable<FormGroup<any>> {
     return this._form$.asObservable();
   }
 }

@@ -4,13 +4,13 @@ import { NFT } from '@home/models/nft.model';
 import { ActivatedRoute, Data } from '@angular/router';
 
 @Component({
-  selector: 'nftm-nft-list',
+  selector: 'nft-nft-list',
   template: `
     <div class="mt-12 mx-auto grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
       <div
         *ngFor="let nft of nftList$ | async as nftList"
         class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-        <nftm-nft-item [nft]="nft"></nftm-nft-item>
+        <nft-nft-item [nft]="nft"></nft-nft-item>
       </div>
     </div>
   `,

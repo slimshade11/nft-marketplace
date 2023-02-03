@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { NFT } from '@home/models/nft.model';
 
 @Component({
-  selector: 'nftm-profile-view',
+  selector: 'nft-profile-view',
   templateUrl: './profile-view.component.html',
   styleUrls: ['./profile-view.component.scss'],
 })

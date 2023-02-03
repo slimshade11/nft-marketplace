@@ -16,11 +16,11 @@ import { ResolveLoaderService } from '@common/services/resolve-loader.service';
         mode="indeterminate"></p-progressBar>
     </div>
 
-    <nftm-navbar></nftm-navbar>
+    <nft-navbar></nft-navbar>
     <main class="max-w-screen-xl px-3 mx-auto main-content">
       <router-outlet></router-outlet>
     </main>
-    <nftm-footer></nftm-footer>
+    <nft-footer></nft-footer>
 
     <p-toast position="bottom-center"></p-toast>
   `,

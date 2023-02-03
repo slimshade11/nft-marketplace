@@ -11,9 +11,10 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
 import { Address } from '@common/web3/models/address.model';
 
 @Component({
-  selector: 'nftm-wallet-bar',
+  selector: 'nft-wallet-bar',
   standalone: true,
   imports: [CommonModule, PRIMENG_UI],
+  providers: [MenuService],
   templateUrl: './wallet-bar.component.html',
 })
 export class WalletBarComponent extends DestroyComponent implements OnInit {
