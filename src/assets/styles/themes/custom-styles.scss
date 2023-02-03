@@ -1,7 +1,20 @@
 @use 'themes/variables' as *;
 
+.main-content {
+  min-height: calc(100vh - $footerHeight - $menubarHeight - 0.25rem);
+}
+
+.menu-bar {
+  height: $menubarHeight;
+}
+
+footer {
+  height: $footerHeight;
+}
+
+// ---UI--- //
 .shadow {
-  box-shadow: 1px 1px 1px 1px $boxshadow-color;
+  box-shadow: 1px 1px 8px 1px $boxshadow-color;
 }
 
 .network-indicator-color {

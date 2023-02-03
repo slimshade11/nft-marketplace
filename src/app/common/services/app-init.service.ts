@@ -2,9 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { lastValueFrom, Observable, of } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AppInitService {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
