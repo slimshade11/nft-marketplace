@@ -36,6 +36,6 @@ export class MenuService {
 
   private getAddressLinkLabel(address: string | undefined): string {
     if (!address) return '';
-    return `0x...${address?.slice(-6)}`;
+    return `0x...${address?.slice(-6).toLowerCase()}`;
   }
 }
