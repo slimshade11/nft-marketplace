@@ -7,7 +7,6 @@ import { HomeFacade } from '@home/home.facade';
 @Component({
   selector: 'nft-nft',
   templateUrl: './nft.component.html',
-  styleUrls: ['./nft.component.scss'],
 })
 export class NftComponent {
   form$: Observable<FormGroup<CreateNftForm>> = this.homeFacade.getCreateNftForm$();

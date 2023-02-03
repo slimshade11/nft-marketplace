@@ -1,21 +1,33 @@
-$blue: rgb(23, 33, 47);
-$lightBlue: rgba(48, 69, 98);
+@use 'themes/variables' as *;
 
 p-menubar {
-  .p-menuitem {
-    border-radius: 0.25rem;
+  ul.p-menubar-root-list {
+    display: flex;
+    gap: 0.5rem;
 
-    &-link {
-      box-shadow: none !important;
+    .p-menuitem {
+      border-radius: 0.25rem;
+
+      &-link {
+        box-shadow: none;
+      }
+    }
+
+    .p-menuitem-link-active,
+    .p-menuitem:hover {
+      box-shadow: 0px 0px 2px 1px $boxshadow-color;
     }
   }
+}
 
-  .p-menuitem-link-active,
-  .p-menuitem:hover {
-    box-shadow: 0px 0px 2px 1px $lightBlue !important;
-
-    .p-menuitem-text {
-      color: #fff !important;
+// Dark mode
+body.dark {
+  p-menubar {
+    ul.p-menubar-root-list {
+      .p-menuitem-link-active,
+      .p-menuitem:hover {
+        box-shadow: 0px 0px 2px 1px $darkmode-boxshadow-color !important;
+      }
     }
   }
 }

@@ -26,11 +26,22 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/vela-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/assets/styles/tailwind/tailwind.css",
               "src/assets/styles/primeng-custom/index.scss",
-              "src/styles.scss"
+              "src/assets/styles/themes/custom-styles.scss",
+              "src/assets/styles/themes/dark-mode-custom-styles.scss",
+              "src/styles.scss",
+              {
+                "input": "src/assets/styles/themes/dark.scss",
+                "bundleName": "dark",
+                "inject": false
+              },
+              {
+                "input": "src/assets/styles/themes/light.scss",
+                "bundleName": "light",
+                "inject": false
+              }
             ],
             "scripts": [],
             "stylePreprocessorOptions": {

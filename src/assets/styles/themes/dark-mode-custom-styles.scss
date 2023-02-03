@@ -1,0 +1,23 @@
+@use 'themes/variables' as *;
+
+body.dark {
+  .shadow {
+    box-shadow: 1px 1px 8px 1px $darkmode-boxshadow-color;
+  }
+
+  .network-indicator-color {
+    background-color: $darkmode-network-indicator-color;
+  }
+
+  .border {
+    border-color: $darkmode-border-color;
+  }
+
+  .input-bcg {
+    background-color: $darkmode-input-bcg;
+  }
+
+  .placeholder-color {
+    color: $darkmode-placeholder-color;
+  }
+}

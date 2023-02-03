@@ -12,6 +12,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 export const PRIMENG_UI: any[] = [
   ButtonModule,
@@ -28,4 +29,5 @@ export const PRIMENG_UI: any[] = [
   ToastModule,
   TooltipModule,
   ProgressBarModule,
+  ToggleButtonModule,
 ];
