@@ -2,6 +2,11 @@ $blue: rgb(23, 33, 47);
 $lightBlue: rgba(48, 69, 98);
 
 p-menubar {
+  ul.p-menubar-root-list {
+    display: flex;
+    gap: 0.5rem;
+  }
+
   .p-menuitem {
     border-radius: 0.25rem;
 
@@ -15,7 +20,6 @@ p-menubar {
     box-shadow: 0px 0px 2px 1px $lightBlue !important;
 
     .p-menuitem-text {
-      color: #fff !important;
     }
   }
 }

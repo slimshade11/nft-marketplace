@@ -4,7 +4,7 @@ import { APP_CONFIG, APP_CONFIG_TOKEN } from '@common/config/app.config';
 import { Web3Service } from '@common/web3/services/web3.service';
 import { CreateNftFormService } from '@home/services/create-nft-form.service';
 import { ROOT_REDUCERS } from '@store/root-reducer';
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule, isDevMode, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -28,6 +28,7 @@ import { ToastService } from '@common/services/toast.service';
 import { MessageService } from 'primeng/api';
 import { AuthGuard } from '@common/guards/auth.guard';
 import { PersistanceService } from '@common/services/persistance.service';
+import { AppInitService } from '@common/services/app-init.service';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -51,6 +52,7 @@ const providers: any[] = [
     provide: APP_CONFIG_TOKEN,
     useValue: APP_CONFIG,
   },
+  { provide: APP_INITIALIZER, useFactory: injectThemeLink, deps: [AppInitService], multi: true },
   HomeFacade,
   NftListResolver,
   FormService,
@@ -68,3 +70,7 @@ const providers: any[] = [
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
 export class AppModule {}
+
+function injectThemeLink(appInitService: AppInitService): () => Promise<void> {
+  return () => appInitService.injectThemeLink();
+}
