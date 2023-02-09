@@ -300,12 +300,8 @@
   "ast": {
     "absolutePath": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
     "exportedSymbols": {
-      "IERC165": [
-        1793
-      ],
-      "IERC721": [
-        1060
-      ]
+      "IERC165": [1793],
+      "IERC721": [1060]
     },
     "id": 1061,
     "license": "MIT",
@@ -313,12 +309,7 @@
     "nodes": [
       {
         "id": 946,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "108:23:1"
       },
@@ -341,9 +332,7 @@
             "baseName": {
               "id": 949,
               "name": "IERC165",
-              "nameLocations": [
-                "271:7:1"
-              ],
+              "nameLocations": ["271:7:1"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 1793,
               "src": "271:7:1"
@@ -364,10 +353,7 @@
         },
         "fullyImplemented": false,
         "id": 1060,
-        "linearizedBaseContracts": [
-          1060,
-          1793
-        ],
+        "linearizedBaseContracts": [1060, 1793],
         "name": "IERC721",
         "nameLocation": "260:7:1",
         "nodeType": "ContractDefinition",

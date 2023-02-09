@@ -14,12 +14,8 @@
   "ast": {
     "absolutePath": "@openzeppelin/contracts/utils/Strings.sol",
     "exportedSymbols": {
-      "Math": [
-        2658
-      ],
-      "Strings": [
-        1757
-      ]
+      "Math": [2658],
+      "Strings": [1757]
     },
     "id": 1758,
     "license": "MIT",
@@ -27,12 +23,7 @@
     "nodes": [
       {
         "id": 1584,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "101:23:7"
       },
@@ -62,9 +53,7 @@
         },
         "fullyImplemented": true,
         "id": 1757,
-        "linearizedBaseContracts": [
-          1757
-        ],
+        "linearizedBaseContracts": [1757],
         "name": "Strings",
         "nameLocation": "196:7:7",
         "nodeType": "ContractDefinition",
@@ -167,9 +156,7 @@
                   "src": "496:609:7",
                   "statements": [
                     {
-                      "assignments": [
-                        1601
-                      ],
+                      "assignments": [1601],
                       "declarations": [
                         {
                           "constant": false,
@@ -303,9 +290,7 @@
                       "src": "520:38:7"
                     },
                     {
-                      "assignments": [
-                        1610
-                      ],
+                      "assignments": [1610],
                       "declarations": [
                         {
                           "constant": false,
@@ -400,9 +385,7 @@
                       "src": "572:41:7"
                     },
                     {
-                      "assignments": [
-                        1617
-                      ],
+                      "assignments": [1617],
                       "declarations": [
                         {
                           "constant": false,
@@ -1029,11 +1012,7 @@
                           "id": 1648,
                           "name": "toHexString",
                           "nodeType": "Identifier",
-                          "overloadedDeclarations": [
-                            1660,
-                            1736,
-                            1756
-                          ],
+                          "overloadedDeclarations": [1660, 1736, 1756],
                           "referencedDeclaration": 1736,
                           "src": "1331:11:7",
                           "typeDescriptions": {
@@ -1160,9 +1139,7 @@
               "src": "1603:347:7",
               "statements": [
                 {
-                  "assignments": [
-                    1671
-                  ],
+                  "assignments": [1671],
                   "declarations": [
                     {
                       "constant": false,
@@ -1706,9 +1683,7 @@
                   },
                   "id": 1722,
                   "initializationExpression": {
-                    "assignments": [
-                      1694
-                    ],
+                    "assignments": [1694],
                     "declarations": [
                       {
                         "constant": false,
@@ -1937,10 +1912,7 @@
                       "id": 1723,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1857:7:7",
                       "typeDescriptions": {
@@ -2285,11 +2257,7 @@
                       "id": 1744,
                       "name": "toHexString",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        1660,
-                        1736,
-                        1756
-                      ],
+                      "overloadedDeclarations": [1660, 1736, 1756],
                       "referencedDeclaration": 1736,
                       "src": "2192:11:7",
                       "typeDescriptions": {

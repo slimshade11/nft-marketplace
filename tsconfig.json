@@ -27,9 +27,9 @@
       "@store/*": ["src/app/store/*"],
       "@home_store/*": ["src/app/store/home/*"],
       "@web3_store/*": ["src/app/store/web3/*"],
-      "@home/*": ["src/app/modules/home/*"],
-      "@create/*": ["src/app/modules/create/*"],
-      "@profile/*": ["src/app/modules/profile/*"]
+      "@home/*": ["src/app/pages/home/*"],
+      "@create/*": ["src/app/pages/create/*"],
+      "@profile/*": ["src/app/pages/profile/*"]
     }
   },
   "angularCompilerOptions": {

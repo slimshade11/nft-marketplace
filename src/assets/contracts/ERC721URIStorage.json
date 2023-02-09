@@ -345,39 +345,17 @@
   "ast": {
     "absolutePath": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
     "exportedSymbols": {
-      "Address": [
-        1560
-      ],
-      "Context": [
-        1582
-      ],
-      "ERC165": [
-        1781
-      ],
-      "ERC721": [
-        944
-      ],
-      "ERC721URIStorage": [
-        1203
-      ],
-      "IERC165": [
-        1793
-      ],
-      "IERC721": [
-        1060
-      ],
-      "IERC721Metadata": [
-        1230
-      ],
-      "IERC721Receiver": [
-        1078
-      ],
-      "Math": [
-        2658
-      ],
-      "Strings": [
-        1757
-      ]
+      "Address": [1560],
+      "Context": [1582],
+      "ERC165": [1781],
+      "ERC721": [944],
+      "ERC721URIStorage": [1203],
+      "IERC165": [1793],
+      "IERC721": [1060],
+      "IERC721Metadata": [1230],
+      "IERC721Receiver": [1078],
+      "Math": [2658],
+      "Strings": [1757]
     },
     "id": 1204,
     "license": "MIT",
@@ -385,12 +363,7 @@
     "nodes": [
       {
         "id": 1080,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "128:23:3"
       },
@@ -413,9 +386,7 @@
             "baseName": {
               "id": 1083,
               "name": "ERC721",
-              "nameLocations": [
-                "286:6:3"
-              ],
+              "nameLocations": ["286:6:3"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 944,
               "src": "286:6:3"
@@ -436,15 +407,7 @@
         },
         "fullyImplemented": false,
         "id": 1203,
-        "linearizedBaseContracts": [
-          1203,
-          944,
-          1230,
-          1060,
-          1781,
-          1793,
-          1582
-        ],
+        "linearizedBaseContracts": [1203, 944, 1230, 1060, 1781, 1793, 1582],
         "name": "ERC721URIStorage",
         "nameLocation": "266:16:3",
         "nodeType": "ContractDefinition",
@@ -455,9 +418,7 @@
             "libraryName": {
               "id": 1085,
               "name": "Strings",
-              "nameLocations": [
-                "305:7:3"
-              ],
+              "nameLocations": ["305:7:3"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 1757,
               "src": "305:7:3"
@@ -522,9 +483,7 @@
             "visibility": "private"
           },
           {
-            "baseFunctions": [
-              204
-            ],
+            "baseFunctions": [204],
             "body": {
               "id": 1149,
               "nodeType": "Block",
@@ -585,9 +544,7 @@
                   "src": "580:23:3"
                 },
                 {
-                  "assignments": [
-                    1105
-                  ],
+                  "assignments": [1105],
                   "declarations": [
                     {
                       "constant": false,
@@ -659,9 +616,7 @@
                   "src": "614:45:3"
                 },
                 {
-                  "assignments": [
-                    1111
-                  ],
+                  "assignments": [1111],
                   "declarations": [
                     {
                       "constant": false,
@@ -1367,10 +1322,7 @@
                       "id": 1158,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1328:7:3",
                       "typeDescriptions": {
@@ -1555,9 +1507,7 @@
             "visibility": "internal"
           },
           {
-            "baseFunctions": [
-              667
-            ],
+            "baseFunctions": [667],
             "body": {
               "id": 1201,
               "nodeType": "Block",

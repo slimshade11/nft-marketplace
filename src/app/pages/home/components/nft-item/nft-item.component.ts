@@ -4,7 +4,6 @@ import { NFT } from '@home/models/nft.model';
 @Component({
   selector: 'nft-nft-item',
   templateUrl: './nft-item.component.html',
-  styleUrls: ['./nft-item.component.scss'],
 })
 export class NftItemComponent {
   @Input() nft!: NFT;

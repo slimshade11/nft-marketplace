@@ -1,9 +1,6 @@
 <p-card>
   <ng-template pTemplate="header">
-    <img
-      class="object-cover h-[190px]"
-      [src]="nft.image"
-      alt="New NFT" />
+    <img class="object-cover h-[190px]" [src]="nft.image" alt="New NFT" />
   </ng-template>
   <p class="text-sm font-medium">Creatures NFT</p>
   <div class="block mt-2">
@@ -13,9 +10,7 @@
     </p>
   </div>
   <dl class="flex gap-[2rem] flex-wrap">
-    <div
-      *ngFor="let attribute of nft.attributes"
-      class="pt-4">
+    <div *ngFor="let attribute of nft.attributes" class="pt-4">
       <dd class="text-xl font-extrabold">
         <div class="flex justify-center items-center">
           {{ attribute.trait_type | titlecase }}
@@ -25,17 +20,7 @@
     </div>
   </dl>
   <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      type="button"
-      class="disabled:cursor-not-allowed mr-3 text-gray-400 p-button-primary"
-      label="Buy"></button>
-    <button
-      pButton
-      pRipple
-      type="button"
-      class="disabled:cursor-not-allowed text-gray-400 p-button-text"
-      label="Preview"></button>
+    <button pButton pRipple type="button" class="disabled:cursor-not-allowed mr-3 text-gray-400 p-button-primary" label="Buy"></button>
+    <button pButton pRipple type="button" class="disabled:cursor-not-allowed text-gray-400 p-button-text" label="Preview"></button>
   </ng-template>
 </p-card>

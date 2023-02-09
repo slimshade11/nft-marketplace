@@ -14267,42 +14267,18 @@
   "ast": {
     "absolutePath": "project:/contracts/NftMarket.sol",
     "exportedSymbols": {
-      "Address": [
-        1560
-      ],
-      "Context": [
-        1582
-      ],
-      "ERC165": [
-        1781
-      ],
-      "ERC721": [
-        944
-      ],
-      "ERC721URIStorage": [
-        1203
-      ],
-      "IERC165": [
-        1793
-      ],
-      "IERC721": [
-        1060
-      ],
-      "IERC721Metadata": [
-        1230
-      ],
-      "IERC721Receiver": [
-        1078
-      ],
-      "Math": [
-        2658
-      ],
-      "NftMarket": [
-        2705
-      ],
-      "Strings": [
-        1757
-      ]
+      "Address": [1560],
+      "Context": [1582],
+      "ERC165": [1781],
+      "ERC721": [944],
+      "ERC721URIStorage": [1203],
+      "IERC165": [1793],
+      "IERC721": [1060],
+      "IERC721Metadata": [1230],
+      "IERC721Receiver": [1078],
+      "Math": [2658],
+      "NftMarket": [2705],
+      "Strings": [1757]
     },
     "id": 2706,
     "license": "MIT",
@@ -14310,15 +14286,7 @@
     "nodes": [
       {
         "id": 2693,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:32:12"
       },
@@ -14341,9 +14309,7 @@
             "baseName": {
               "id": 2695,
               "name": "ERC721URIStorage",
-              "nameLocations": [
-                "168:16:12"
-              ],
+              "nameLocations": ["168:16:12"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 1203,
               "src": "168:16:12"
@@ -14358,16 +14324,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 2705,
-        "linearizedBaseContracts": [
-          2705,
-          1203,
-          944,
-          1230,
-          1060,
-          1781,
-          1793,
-          1582
-        ],
+        "linearizedBaseContracts": [2705, 1203, 944, 1230, 1060, 1781, 1793, 1582],
         "name": "NftMarket",
         "nameLocation": "155:9:12",
         "nodeType": "ContractDefinition",
@@ -14423,9 +14380,7 @@
                 "modifierName": {
                   "id": 2698,
                   "name": "ERC721",
-                  "nameLocations": [
-                    "203:6:12"
-                  ],
+                  "nameLocations": ["203:6:12"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 944,
                   "src": "203:6:12"

@@ -20,8 +20,7 @@ declare global {
 
 @Injectable()
 export class Web3Service {
-  private readonly _marketContract$: BehaviorSubject<Readonly<Contract> | null> =
-    new BehaviorSubject<Readonly<Contract> | null>(null);
+  private readonly _marketContract$: BehaviorSubject<Readonly<Contract> | null> = new BehaviorSubject<Readonly<Contract> | null>(null);
 
   private readonly _targetNetwork: string = NETWORKS[this.appConfig.targetChainId];
   private readonly _ethereum: MetaMaskInpageProvider = window.ethereum;

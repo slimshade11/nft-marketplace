@@ -15,20 +15,17 @@ import { FormsModule } from '@angular/forms';
   providers: [MenuService, ThemeService],
   template: `
     <div class="p-3 flex items-center menu-bar">
-      <p-menubar
-        [model]="dashboardLinks"
-        class="w-full">
-        <div class="flex">
+      <p-menubar [model]="dashboardLinks" class="w-full">
+        <div class="flex items-center">
           <p-toggleButton
             [(ngModel)]="isLightMode"
             (onChange)="themeService.setTheme(isLightMode)"
             class="mr-3"
             onIcon="pi pi-sun"
-            offIcon="pi pi-moon"></p-toggleButton>
-          <div class="flex items-center">
-            <nft-network-widget class="mr-3"></nft-network-widget>
-            <nft-wallet-bar></nft-wallet-bar>
-          </div>
+            offIcon="pi pi-moon">
+          </p-toggleButton>
+          <nft-network-widget class="mr-3"></nft-network-widget>
+          <nft-wallet-bar></nft-wallet-bar>
         </div>
       </p-menubar>
     </div>
