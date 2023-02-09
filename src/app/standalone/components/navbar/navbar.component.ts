@@ -15,9 +15,7 @@ import { FormsModule } from '@angular/forms';
   providers: [MenuService, ThemeService],
   template: `
     <div class="p-3 flex items-center menu-bar">
-      <p-menubar
-        [model]="dashboardLinks"
-        class="w-full">
+      <p-menubar [model]="dashboardLinks" class="w-full">
         <div class="flex items-center">
           <p-toggleButton
             [(ngModel)]="isLightMode"

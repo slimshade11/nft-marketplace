@@ -11,9 +11,7 @@ import { ResolveLoaderService } from '@common/services/resolve-loader.service';
   selector: 'app-root',
   template: `
     <div class="fixed h-[.25rem] top-0 left-0 right-0 overflow-hidden">
-      <p-progressBar
-        *ngIf="isLoading$ | async"
-        mode="indeterminate"></p-progressBar>
+      <p-progressBar *ngIf="isLoading$ | async" mode="indeterminate"></p-progressBar>
     </div>
 
     <nft-navbar></nft-navbar>

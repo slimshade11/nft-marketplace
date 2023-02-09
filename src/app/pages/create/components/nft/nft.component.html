@@ -1,0 +1,35 @@
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-[40%] border">
+    <div>Do you have meta data already?</div>
+    <!-- //TODO: implement left nft ui -->
+    <h3>...TODO...</h3>
+  </div>
+  <div class="w-full lg:w-[60%] pt-8">
+    <form *ngIf="form$ | async as form" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+      <input id="name" type="text" class="w-full rounded-md p-3" placeholder="Name" formControlName="name" pInputText />
+      <textarea class="w-full rounded-md mt-5 p-3" placeholder="Description" formControlName="description" pInputTextarea></textarea>
+      <small class="placeholder-color">Brief description of NFT</small>
+      <div class="h-[250px] rounded-md flex items-center justify-center mt-8 upload border input-bcg">
+        <div class="flex flex-col items-center">
+          <i class="pi pi-image text-3xl"></i>
+          <span class="placeholder-color">Upload a file</span>
+          <p-fileUpload
+            (onUpload)="onNftUpload($event)"
+            [auto]="true"
+            mode="basic"
+            name="demo[]"
+            url="./upload.php"
+            class="mt-4"></p-fileUpload>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <input id="health" type="text" class="w-full rounded-md p-3" placeholder="Health" formControlName="health" pInputText />
+        <input id="attack" type="text" class="w-full rounded-md p-3" placeholder="Attack" formControlName="attack" pInputText />
+        <input id="speed" type="text" class="w-full rounded-md p-3" placeholder="Speed" formControlName="speed" pInputText />
+      </div>
+      <div class="flex justify-end mt-8">
+        <button class="px-8 text-white" type="submit" label="Save" pButton></button>
+      </div>
+    </form>
+  </div>
+</div>

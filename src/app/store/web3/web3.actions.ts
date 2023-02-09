@@ -17,16 +17,10 @@ export const loadContract = createAction(Web3ActionTypes.LOAD_CONTRACT);
 
 // Accounts changed
 export const accountChanged = createAction(Web3ActionTypes.ACCOUNT_CHANGED, props<{ address: Address }>());
-export const accountChangedSuccess = createAction(
-  Web3ActionTypes.ACCOUNT_CHANGED_SUCCESS,
-  props<{ address: Address }>()
-);
+export const accountChangedSuccess = createAction(Web3ActionTypes.ACCOUNT_CHANGED_SUCCESS, props<{ address: Address }>());
 export const accountChangedFailure = createAction(Web3ActionTypes.ACCOUNT_CHANGED_FAILURE);
 
 // Get network
 export const getChainData = createAction(Web3ActionTypes.GET_CHAIN_DATA);
-export const getChainDataSuccess = createAction(
-  Web3ActionTypes.GET_CHAIN_DATA_SUCCESS,
-  props<{ getChainIdPayload: GetChainIdPayload }>()
-);
+export const getChainDataSuccess = createAction(Web3ActionTypes.GET_CHAIN_DATA_SUCCESS, props<{ getChainIdPayload: GetChainIdPayload }>());
 export const getChainDataFailure = createAction(Web3ActionTypes.GET_CHAIN_DATA_FAILURE);

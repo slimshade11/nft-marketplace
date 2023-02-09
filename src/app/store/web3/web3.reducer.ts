@@ -30,17 +30,14 @@ export const Reducer = createReducer(
   on(Web3Actions.getMetamaskState, (state): State => {
     return { ...state, isAddressLoading: true };
   }),
-  on(
-    Web3Actions.getMetamaskStateSuccess,
-    (state, { metamaskStatePayload: { isMetamaskInstalled, address } }): State => {
-      return {
-        ...state,
-        isMetamaskInstalled,
-        address,
-        isAddressLoading: false,
-      };
-    }
-  ),
+  on(Web3Actions.getMetamaskStateSuccess, (state, { metamaskStatePayload: { isMetamaskInstalled, address } }): State => {
+    return {
+      ...state,
+      isMetamaskInstalled,
+      address,
+      isAddressLoading: false,
+    };
+  }),
   on(Web3Actions.getMetamaskStateFailure, (state): State => {
     return { ...state, isAddressLoading: false };
   }),
@@ -60,12 +57,9 @@ export const Reducer = createReducer(
   on(Web3Actions.getChainData, (state): State => {
     return { ...state, isNetworkLoading: true };
   }),
-  on(
-    Web3Actions.getChainDataSuccess,
-    (state, { getChainIdPayload: { chainId, isNetworkSupported, networkName } }): State => {
-      return { ...state, isNetworkLoading: false, chainId, isNetworkSupported, networkName };
-    }
-  ),
+  on(Web3Actions.getChainDataSuccess, (state, { getChainIdPayload: { chainId, isNetworkSupported, networkName } }): State => {
+    return { ...state, isNetworkLoading: false, chainId, isNetworkSupported, networkName };
+  }),
   on(Web3Actions.getChainDataFailure, (state): State => {
     return { ...state, isNetworkLoading: false };
   })

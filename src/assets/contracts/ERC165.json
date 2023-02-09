@@ -34,12 +34,8 @@
   "ast": {
     "absolutePath": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
     "exportedSymbols": {
-      "ERC165": [
-        1781
-      ],
-      "IERC165": [
-        1793
-      ]
+      "ERC165": [1781],
+      "IERC165": [1793]
     },
     "id": 1782,
     "license": "MIT",
@@ -47,12 +43,7 @@
     "nodes": [
       {
         "id": 1759,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "99:23:8"
       },
@@ -75,9 +66,7 @@
             "baseName": {
               "id": 1762,
               "name": "IERC165",
-              "nameLocations": [
-                "754:7:8"
-              ],
+              "nameLocations": ["754:7:8"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 1793,
               "src": "754:7:8"
@@ -98,18 +87,13 @@
         },
         "fullyImplemented": true,
         "id": 1781,
-        "linearizedBaseContracts": [
-          1781,
-          1793
-        ],
+        "linearizedBaseContracts": [1781, 1793],
         "name": "ERC165",
         "nameLocation": "744:6:8",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "baseFunctions": [
-              1792
-            ],
+            "baseFunctions": [1792],
             "body": {
               "id": 1779,
               "nodeType": "Block",

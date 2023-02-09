@@ -21,11 +21,7 @@ export class Web3Effects {
             return Web3Actions.getMetamaskStateSuccess({ metamaskStatePayload });
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              GetMetamaskStateError.severity,
-              GetMetamaskStateError.details
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, GetMetamaskStateError.severity, GetMetamaskStateError.details);
             return of(Web3Actions.getMetamaskStateFailure());
           })
         );
