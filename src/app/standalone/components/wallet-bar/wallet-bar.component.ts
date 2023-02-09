@@ -28,6 +28,10 @@ export class WalletBarComponent extends DestroyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeValues();
+  }
+
+  private initializeValues(): void {
     this.store
       .select(Web3Selectors.address)
       .pipe(takeUntil(this.destroy$))

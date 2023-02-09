@@ -2,7 +2,7 @@ import { Web3Actions, Web3Selectors } from '@store/web3';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Web3Service } from '@common/web3/services/web3.service';
-import { Observable, combineLatestWith, tap, take } from 'rxjs';
+import { Observable, combineLatestWith, tap } from 'rxjs';
 import { Address } from '@common/web3/models/address.model';
 import { Router } from '@angular/router';
 
