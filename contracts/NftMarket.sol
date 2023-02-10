@@ -29,7 +29,7 @@ contract NftMarket is ERC721URIStorage {
     return newTokenId;
   }
 
-  function tokenURIExists(string memory tokenURI) public view returns (book) {
+  function tokenURIExists(string memory tokenURI) public view returns (bool) {
     return _usedTokenURIs[tokenURI] == true;
   }
 }
