@@ -1,15 +1,18 @@
 <ng-container *ngIf="isAddressLoading$ | async; else loaded">
-  <button pButton icon="pi pi-spin pi-spinner" label="Loading" class="block min-w-[60px]"></button>
+  <button pButton icon="pi pi-spin pi-spinner" label="Loading" class="block min-w-[3.75rem]"></button>
 </ng-container>
+
 <ng-template #loaded>
   <ng-container *ngIf="address !== null; else walletButton">
     <p-menu #menu [model]="profileLinks" [popup]="true"> </p-menu>
     <p-avatar #avatar (click)="menu.toggle($event)" label="P" class="cursor-pointer"> </p-avatar>
   </ng-container>
+
   <ng-template #walletButton>
     <ng-container *ngIf="web3.provider; else installMetamask">
       <button (click)="web3.connectWallet()" pButton label="Connect wallet"></button>
     </ng-container>
+
     <ng-template #installMetamask>
       <a href="https://metamask.io/download/" target="_blank">
         <button pButton label="Install Metamask"></button>

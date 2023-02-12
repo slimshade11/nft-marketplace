@@ -9,7 +9,7 @@ import { HomeActions, HomeSelectors } from '@store/home';
 export class NftListResolver implements Resolve<NFT[]> {
   constructor(private store: Store) {}
 
-  resolve(): Observable<NFT[]> {
+  public resolve(): Observable<NFT[]> {
     return this.store.select(HomeSelectors.nftList).pipe(
       debounceTime(500),
       tap((nftList: NFT[] | null): false | void => !nftList && this.store.dispatch(HomeActions.getNftList())),

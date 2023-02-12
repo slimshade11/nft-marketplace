@@ -6,5 +6,5 @@ import { NFT } from '@home/models/nft.model';
   templateUrl: './nft-item.component.html',
 })
 export class NftItemComponent {
-  @Input() nft!: NFT;
+  @Input() public nft!: NFT;
 }

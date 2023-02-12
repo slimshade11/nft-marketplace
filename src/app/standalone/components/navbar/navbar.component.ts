@@ -24,7 +24,9 @@ import { FormsModule } from '@angular/forms';
             onIcon="pi pi-sun"
             offIcon="pi pi-moon">
           </p-toggleButton>
+
           <nft-network-widget class="mr-3"></nft-network-widget>
+
           <nft-wallet-bar></nft-wallet-bar>
         </div>
       </p-menubar>

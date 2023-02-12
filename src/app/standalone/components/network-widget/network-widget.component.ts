@@ -13,6 +13,7 @@ import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
   imports: [CommonModule, NetworkNamePipe, PRIMENG_UI],
   template: `
     <ng-container *ngIf="isNetworkLoading$ | async; else loaded">Loading...</ng-container>
+
     <ng-template #loaded>
       <button
         *ngIf="isMetamaskInstalled$ | async"

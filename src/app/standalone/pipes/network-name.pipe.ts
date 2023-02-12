@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class NetworkNamePipe implements PipeTransform {
-  transform(value: number | null): string {
+  public transform(value: number | null): string {
     return value ? NETWORKS[value] : 'No network detected';
   }
 }

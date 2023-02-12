@@ -14,7 +14,11 @@ import { ActivatedRoute, Data } from '@angular/router';
   `,
 })
 export class NftListComponent {
-  public nftList$: Observable<NFT[]> = this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
+  public nftList$: Observable<NFT[]> = this.getNftList$();
 
   constructor(private activatedRoute: ActivatedRoute) {}
+
+  private getNftList$(): Observable<NFT[]> {
+    return this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
+  }
 }

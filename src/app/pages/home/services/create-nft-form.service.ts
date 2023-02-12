@@ -9,7 +9,7 @@ export class CreateNftFormService extends FormService {
     super();
   }
 
-  get formConfig(): FormGroup<CreateNftForm> {
+  public get formConfig(): FormGroup<CreateNftForm> {
     return this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
