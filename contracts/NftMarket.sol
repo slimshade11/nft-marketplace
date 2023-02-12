@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-import '@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol';
-import '@openzeppelin/contracts/utils/Counters.sol';
+import '../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol';
+import '../node_modules/@openzeppelin/contracts/utils/Counters.sol';
 
 contract NftMarket is ERC721URIStorage {
   using Counters for Counters.Counter;
@@ -52,6 +52,20 @@ contract NftMarket is ERC721URIStorage {
     _usedTokenURIs[tokenURI] = true;
 
     return newTokenId;
+  }
+
+  function buyNft(uint tokenId) public payable {
+    uint price = _idToNftItem[tokenId].price;
+    address owner = ERC721.ownerOf(tokenId);
+
+    require(msg.sender != owner, 'You already own this NFT');
+    require(msg.value == price, 'Please submit the asking price');
+
+    _idToNftItem[tokenId].isListed = false;
+    _listedItems.decrement();
+
+    _transfer(owner, msg.sender, tokenId);
+    payable(owner).transfer(msg.value);
   }
 
   function _createNftItem(uint tokenId, uint price) private {
