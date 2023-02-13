@@ -43,12 +43,12 @@ contract NftMarket is ERC721URIStorage {
     return _usedTokenURIs[tokenURI] == true;
   }
 
-  function totalSuply() public view returns (uint) {
+  function totalSupply() public view returns (uint) {
     return _allNfts.length;
   }
 
   function tokenByIndex(uint index) public view returns (uint) {
-    require(index < totalSuply(), 'Index out of bounds');
+    require(index < totalSupply(), 'Index out of bounds');
     return _allNfts[index];
   }
 
