@@ -38,6 +38,7 @@ export class WalletBarComponent extends DestroyComponent implements OnInit {
       .subscribe({
         next: (address: Address): void => {
           this.address = address;
+
           if (this.address) {
             this.profileLinks = this.menuService.setProfileLinks(this.address);
           }

@@ -11,7 +11,7 @@ import { ResolveLoaderService } from '@common/services/resolve-loader.service';
   selector: 'app-root',
   template: `
     <div class="fixed h-[.25rem] top-0 left-0 right-0 overflow-hidden">
-      <p-progressBar *ngIf="isLoading$ | async" mode="indeterminate"></p-progressBar>
+      <p-progressBar *ngIf="isLoading$ | async" mode="indeterminate" class="h-full"></p-progressBar>
     </div>
 
     <nft-navbar></nft-navbar>
@@ -24,7 +24,7 @@ import { ResolveLoaderService } from '@common/services/resolve-loader.service';
   `,
 })
 export class AppComponent extends DestroyComponent implements OnInit {
-  public isLoading$: Observable<boolean> = this.resolveLoaderService.handleResolveProgressBarVisibility$();
+  public isLoading$: Observable<boolean> = this.resolveLoaderService.handleLoaderVisibility$();
 
   constructor(
     private resolveLoaderService: ResolveLoaderService,
