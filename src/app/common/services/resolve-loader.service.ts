@@ -6,7 +6,7 @@ import { Observable, filter, map, merge } from 'rxjs';
 export class ResolveLoaderService {
   private router: Router = inject(Router);
 
-  public handleResolveProgressBarVisibility$(): Observable<boolean> {
+  public handleLoaderVisibility$(): Observable<boolean> {
     const showLoader$: Observable<boolean> = this.router.events.pipe(
       filter((event: any): boolean => event instanceof ResolveStart),
       map((): boolean => true)
