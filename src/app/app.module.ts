@@ -52,7 +52,12 @@ const providers: any[] = [
     provide: APP_CONFIG_TOKEN,
     useValue: APP_CONFIG,
   },
-  { provide: APP_INITIALIZER, useFactory: injectThemeLink, deps: [AppInitService], multi: true },
+  {
+    provide: APP_INITIALIZER,
+    useFactory: injectThemeLink,
+    deps: [AppInitService],
+    multi: true,
+  },
   HomeFacade,
   NftListResolver,
   FormService,
