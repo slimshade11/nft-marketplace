@@ -108,5 +108,10 @@ contract('NftMarket', (accounts) => {
       const allNfts = await _contract.getAllNftsOnSale();
       assert.equal(allNfts[0].tokenId, 2, 'NFT has a wrong id');
     });
+
+    it('account[1] should have one owned NFT', async () => {
+      const ownedNfts = await _contract.getOwnedNfts({ from: accounts[1] });
+      assert.equal(ownedNfts[0].tokenId, 1, 'NFT has a wrong id');
+    });
   });
 });
