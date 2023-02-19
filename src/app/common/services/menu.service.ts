@@ -1,5 +1,6 @@
 import { MenuItem } from 'primeng/api';
 import { Injectable } from '@angular/core';
+import { Address } from '@common/web3/models/address.model';
 
 @Injectable()
 export class MenuService {
@@ -20,7 +21,7 @@ export class MenuService {
     ];
   }
 
-  public setProfileLinks(address: string): MenuItem[] {
+  public setProfileLinks(address: Address): MenuItem[] {
     return [
       {
         label: this.getAddressLinkLabel(address),
@@ -34,8 +35,7 @@ export class MenuService {
     ];
   }
 
-  private getAddressLinkLabel(address: string | undefined): string {
-    if (!address) return '';
-    return `0x...${address?.slice(-6).toLowerCase()}`;
+  private getAddressLinkLabel(address: Address): string {
+    return address ? `0x...${address?.slice(-6).toLowerCase()}` : '';
   }
 }
