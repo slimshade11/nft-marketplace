@@ -4,7 +4,7 @@ import { Address } from '@common/web3/models/address.model';
 
 @Injectable()
 export class MenuService {
-  public setDashboardLinks(): MenuItem[] {
+  public setDashboardLinks(address: Address): MenuItem[] {
     return [
       {
         label: 'Marketplace',
@@ -17,6 +17,7 @@ export class MenuService {
         label: 'Create',
         routerLink: '/create/nft',
         icon: 'pi pi-fw pi-user',
+        styleClass: address === null ? 'hidden' : '',
       },
     ];
   }
