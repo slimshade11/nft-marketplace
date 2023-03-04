@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import { CreateNftForm } from '@home/models/create-nft-form.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class HomeFacade {
   constructor(private createNftFormService: CreateNftFormService) {}
 

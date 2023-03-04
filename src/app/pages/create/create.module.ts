@@ -3,13 +3,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateRoutingModule } from '@create/create-routing.module';
 import { NftComponent } from '@create/components/nft/nft.component';
-import { PRIMENG_UI } from '@app/common/primeng-ui/primeng-ui';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 const declarations: any[] = [NftComponent];
-const imports: any[] = [CommonModule, CreateRoutingModule, ReactiveFormsModule, ...PRIMENG_UI];
+const imports: any[] = [CommonModule, CreateRoutingModule, ReactiveFormsModule, FileUploadModule, InputTextModule, InputTextareaModule];
 
-@NgModule({
-  declarations,
-  imports,
-})
+@NgModule({ declarations, imports })
 export class CreateModule {}

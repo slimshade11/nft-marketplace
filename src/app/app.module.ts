@@ -1,8 +1,4 @@
-import { ResolveLoaderService } from '@common/services/resolve-loader.service';
-import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
 import { APP_CONFIG, APP_CONFIG_TOKEN } from '@common/config/app.config';
-import { Web3Service } from '@common/web3/services/web3.service';
-import { CreateNftFormService } from '@home/services/create-nft-form.service';
 import { ROOT_REDUCERS } from '@store/root-reducer';
 import { NgModule, isDevMode, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,20 +11,13 @@ import { NavbarComponent } from '@standalone/components/navbar/navbar.component'
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '@standalone/components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeFacade } from '@home/home.facade';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeEffects } from '@home_store/home.effects';
-import { NftListResolver } from '@home/resolvers/nft-list.resolver';
-import { FormService } from '@common/services/form.service';
-import { HomeService } from '@home/services/home.service';
-import { AppFacade } from '@app/app.facade';
+import { HomeEffects } from '@store/home/home.effects';
 import { Web3Effects } from '@store/web3/web3.effects';
-import { ProfileFacade } from '@profile/profile.facade';
-import { ToastService } from '@common/services/toast.service';
 import { MessageService } from 'primeng/api';
-import { AuthGuard } from '@common/guards/auth.guard';
-import { PersistanceService } from '@common/services/persistance.service';
 import { AppInitService } from '@common/services/app-init.service';
+import { ToastModule } from 'primeng/toast';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 const declarations: any[] = [AppComponent];
 const imports: any[] = [
@@ -39,8 +28,9 @@ const imports: any[] = [
   RouterModule,
   FooterComponent,
   HttpClientModule,
-  PRIMENG_UI,
   HttpClientModule,
+  ToastModule,
+  ProgressBarModule,
 
   // NgRx //
   StoreModule.forRoot(ROOT_REDUCERS),
@@ -58,24 +48,12 @@ const providers: any[] = [
     deps: [AppInitService],
     multi: true,
   },
-  HomeFacade,
-  NftListResolver,
-  FormService,
-  HomeService,
-  CreateNftFormService,
-  AppFacade,
-  Web3Service,
-  ProfileFacade,
-  ToastService,
   MessageService,
-  AuthGuard,
-  PersistanceService,
-  ResolveLoaderService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
 export class AppModule {}
 
 function injectThemeLink(appInitService: AppInitService): () => Promise<void> {
-  return () => appInitService.injectThemeLink();
+  return (): Promise<void> => appInitService.injectThemeLink();
 }

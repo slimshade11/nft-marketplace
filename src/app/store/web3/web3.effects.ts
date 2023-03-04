@@ -41,22 +41,6 @@ export class Web3Effects {
     { dispatch: false }
   );
 
-  accountChangedEffect$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(Web3Actions.accountChanged),
-      switchMap(({ address }) => {
-        return of(address).pipe(
-          map((address: string | null) => {
-            return Web3Actions.accountChangedSuccess({ address });
-          }),
-          catchError(() => {
-            return of(Web3Actions.accountChangedFailure());
-          })
-        );
-      })
-    );
-  });
-
   getChainIdEffect$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(Web3Actions.getChainData),

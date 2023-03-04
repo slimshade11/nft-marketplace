@@ -1,8 +1,8 @@
 import { Address } from '@common/web3/models/address.model';
 import { GetMetamaskStatePayload } from '@common/web3/models/get-metamask-state-payload.model';
 import { createAction, props } from '@ngrx/store';
-import { Web3ActionTypes } from '@web3_store/web3-action-types';
-import { GetChainIdPayload } from '@app/common/web3/models/get-chain-id-payload.model';
+import { GetChainIdPayload } from '@common/web3/models/get-chain-id-payload.model';
+import { Web3ActionTypes } from '@store/web3/web3-action-types';
 
 // Get metamask state
 export const getMetamaskState = createAction(Web3ActionTypes.GET_METAMASK_STATE);
@@ -17,8 +17,6 @@ export const loadContract = createAction(Web3ActionTypes.LOAD_CONTRACT);
 
 // Accounts changed
 export const accountChanged = createAction(Web3ActionTypes.ACCOUNT_CHANGED, props<{ address: Address }>());
-export const accountChangedSuccess = createAction(Web3ActionTypes.ACCOUNT_CHANGED_SUCCESS, props<{ address: Address }>());
-export const accountChangedFailure = createAction(Web3ActionTypes.ACCOUNT_CHANGED_FAILURE);
 
 // Get network
 export const getChainData = createAction(Web3ActionTypes.GET_CHAIN_DATA);

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormService } from '@common/services/form.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CreateNftFormService extends FormService {
   constructor() {
     super();

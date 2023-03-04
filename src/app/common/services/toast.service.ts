@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ToastService {
   constructor(private messageService: MessageService, private ngZone: NgZone) {}
 
