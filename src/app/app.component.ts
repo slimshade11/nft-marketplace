@@ -1,10 +1,9 @@
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Web3Actions } from '@store/web3';
 import { PrimeNGConfig } from 'primeng/api';
 import { AppFacade } from '@app/app.facade';
-import { Observable, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ResolveLoaderService } from '@common/services/resolve-loader.service';
 
 @Component({
@@ -23,7 +22,7 @@ import { ResolveLoaderService } from '@common/services/resolve-loader.service';
     <p-toast position="bottom-center"></p-toast>
   `,
 })
-export class AppComponent extends DestroyComponent implements OnInit {
+export class AppComponent implements OnInit {
   public isLoading$: Observable<boolean> = this.resolveLoaderService.handleLoaderVisibility$();
 
   constructor(
@@ -31,15 +30,13 @@ export class AppComponent extends DestroyComponent implements OnInit {
     private store: Store,
     private primengConfig: PrimeNGConfig,
     private appFacade: AppFacade
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
     this.dispatchStoreActions();
-    this.appFacade.onAccountChanged$().pipe(takeUntil(this.destroy$)).subscribe();
-    this.appFacade.onChainChanged$().pipe(takeUntil(this.destroy$)).subscribe();
+    this.appFacade.onAccountChanged$().subscribe();
+    this.appFacade.onChainChanged$().subscribe();
   }
 
   private dispatchStoreActions(): void {

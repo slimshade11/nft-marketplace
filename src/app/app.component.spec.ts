@@ -12,6 +12,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ResolveLoaderService } from '@common/services/resolve-loader.service';
 import { provideMockStore } from '@ngrx/store/testing';
 import { Web3Service } from '@common/web3/services/web3.service';
+import { PersistanceService } from '@common/services/persistance.service';
 
 @Component({ template: '' })
 class TestComponentErrorOnDestroy implements OnDestroy {
@@ -19,12 +20,16 @@ class TestComponentErrorOnDestroy implements OnDestroy {
 }
 
 class MockResolveLoaderService {
-  handleResolveProgressBarVisibility$(): Observable<boolean> {
+  handleLoaderVisibility$(): Observable<boolean> {
     return of();
   }
 }
 
 class MockWeb3Service {}
+
+class MockPersistanceService {
+  get(): any {}
+}
 
 class MockAppFacade {
   dispatchGetDefaultWeb3StateAction(): void {}
@@ -47,6 +52,8 @@ describe('AppComponent', () => {
         { provide: AppFacade, useClass: MockAppFacade },
         { provide: ResolveLoaderService, useClass: MockResolveLoaderService },
         { provide: Web3Service, useClass: MockWeb3Service },
+        { provide: PersistanceService, useClass: MockPersistanceService },
+
         provideMockStore({ initialState }),
         MessageService,
       ],

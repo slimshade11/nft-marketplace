@@ -1,5 +1,5 @@
-import * as HomeActions from '@home_store/home.actions';
-import { FeatureKey, Reducer, State } from '@home_store/home.reducer';
-import * as HomeSelectors from '@home_store/home.selectors';
+import * as HomeActions from '@store/home/home.actions';
+import { FeatureKey, Reducer, State } from '@store/home/home.reducer';
+import * as HomeSelectors from '@store/home/home.selectors';
 
 export { HomeActions, FeatureKey, Reducer, State, HomeSelectors };

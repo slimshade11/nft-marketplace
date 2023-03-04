@@ -1,4 +1,4 @@
-import { HomeActions } from '@app/store/home';
+import { HomeActions } from '@store/home';
 import { NFT } from '@home/models/nft.model';
 import { createReducer, on } from '@ngrx/store';
 

@@ -14,12 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'create',
+    canMatch: [AuthGuard],
     loadChildren: (): Promise<any> => import('@create/create.module').then(({ CreateModule }): CreateModule => CreateModule),
   },
   {
     path: 'profile',
-    loadChildren: (): Promise<any> => import('@profile/profile.module').then(({ ProfileModule }): ProfileModule => ProfileModule),
     canMatch: [AuthGuard],
+    loadChildren: (): Promise<any> => import('@profile/profile.module').then(({ ProfileModule }): ProfileModule => ProfileModule),
     resolve: { nftList: NftListResolver },
   },
 ];

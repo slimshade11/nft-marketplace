@@ -2,16 +2,19 @@ import { NetworkWidgetComponent } from '@standalone/components/network-widget/ne
 import { PersistanceService } from '@common/services/persistance.service';
 import { WalletBarComponent } from '@standalone/components/wallet-bar/wallet-bar.component';
 import { MenuService } from '@common/services/menu.service';
-import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
 import { Component, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuItem } from 'primeng/api';
 import { ThemeService } from '@common/services/theme.service';
 import { FormsModule } from '@angular/forms';
+import { MenubarModule } from 'primeng/menubar';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+
+const NavbarImports: any[] = [CommonModule, MenubarModule, WalletBarComponent, NetworkWidgetComponent, FormsModule, ToggleButtonModule];
 @Component({
   selector: 'nft-navbar',
   standalone: true,
-  imports: [CommonModule, ...PRIMENG_UI, WalletBarComponent, NetworkWidgetComponent, FormsModule],
+  imports: NavbarImports,
   providers: [MenuService, ThemeService],
   template: `
     <div class="p-3 flex items-center menu-bar">

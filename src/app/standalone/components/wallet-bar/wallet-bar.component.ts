@@ -1,24 +1,27 @@
 import { Component, OnInit, Self } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Web3Service } from '@common/web3/services/web3.service';
-import { Web3Selectors } from '@app/store/web3';
+import { Web3Selectors } from '@store/web3';
 import { Store } from '@ngrx/store';
 import { Observable, takeUntil } from 'rxjs';
 import { MenuItem } from 'primeng/api';
-import { PRIMENG_UI } from '@common/primeng-ui/primeng-ui';
+import { MenuModule } from 'primeng/menu';
 import { MenuService } from '@common/services/menu.service';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Address } from '@common/web3/models/address.model';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
 
+const WalletBarImports: any[] = [CommonModule, MenuModule, AvatarModule, ButtonModule];
 @Component({
   selector: 'nft-wallet-bar',
   standalone: true,
-  imports: [CommonModule, PRIMENG_UI],
+  imports: WalletBarImports,
   providers: [MenuService],
   templateUrl: './wallet-bar.component.html',
 })
 export class WalletBarComponent extends DestroyComponent implements OnInit {
-  public isAddressLoading$: Observable<boolean> = this.store.select(Web3Selectors.isAddressLoading);
+  public isMetamaskPerforming$: Observable<boolean> = this.store.select(Web3Selectors.isPerforming);
 
   public profileLinks!: MenuItem[];
   public address: Address = null;
