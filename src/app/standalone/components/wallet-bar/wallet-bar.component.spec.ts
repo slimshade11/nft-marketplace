@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Web3Service } from '@app/common/web3/services/web3.service';
+import { Web3Service } from '@common/web3/services/web3.service';
 import { MenuService } from '@common/services/menu.service';
 import { MenuItem } from 'primeng/api';
 import { WalletBarComponent } from '@standalone/components/wallet-bar/wallet-bar.component';

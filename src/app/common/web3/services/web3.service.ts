@@ -22,7 +22,7 @@ declare global {
 
 @Injectable({ providedIn: 'root' })
 export class Web3Service {
-  private _marketContract$: BehaviorSubject<Readonly<Contract> | null> = new BehaviorSubject<Readonly<Contract> | null>(null);
+  private _contract$: BehaviorSubject<Readonly<Contract> | null> = new BehaviorSubject<Readonly<Contract> | null>(null);
 
   private _ethereum: MetaMaskInpageProvider = window.ethereum;
   private readonly _targetNetwork: string = NETWORKS[this.appConfig.targetChainId];
@@ -55,7 +55,7 @@ export class Web3Service {
         return new ethers.Contract(artifact.networks[this.appConfig.networkId].address, artifact.abi, this.provider);
       }),
       tap((contract: Readonly<Contract>): void => {
-        this._marketContract$.next(contract);
+        this._contract$.next(contract);
       })
     );
   }
@@ -84,5 +84,9 @@ export class Web3Service {
 
   public onChainChanged$(): Observable<unknown> {
     return fromEvent(this._ethereum, MetamaskEventName.CHAIN_CHANGED).pipe(tap((): void => window.location.reload()));
+  }
+
+  public get contract$(): Observable<Readonly<Contract> | null> {
+    return this._contract$.asObservable();
   }
 }

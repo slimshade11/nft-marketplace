@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { NFT } from '@home/models/nft.model';
+import { NFTMeta } from '@common/web3/models/nft-meta.model';
 
 @Component({
   selector: 'nft-nft-item',
   templateUrl: './nft-item.component.html',
 })
 export class NftItemComponent {
-  @Input() public nft!: NFT;
+  @Input() public nft!: NFTMeta;
 }

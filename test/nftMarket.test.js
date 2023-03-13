@@ -32,13 +32,13 @@ contract('NftMarket', (accounts) => {
       assert.equal(actualTokenURI, tokenURI, 'tokenURI is not correctly set');
     });
 
-    it('should not be possible to create a NFT whit used tokenURI', async () => {
+    it('should not be possible to create a NFTMeta whit used tokenURI', async () => {
       try {
         await _contract.mintToken(tokenURI, _nftPrice, {
           from: accounts[0],
         });
       } catch (error) {
-        assert(error, 'NFT was winted with previously used tokenURI');
+        assert(error, 'NFTMeta was winted with previously used tokenURI');
       }
     });
 
@@ -47,7 +47,7 @@ contract('NftMarket', (accounts) => {
       assert.equal(listedItem, 1, 'Listed items count is not 1');
     });
 
-    it('should have create NFT item', async () => {
+    it('should have create NFTMeta item', async () => {
       const nftItem = await _contract.getNftItem(1);
       assert.equal(nftItem.tokenId, 1, 'Token id is not 1');
       assert.equal(nftItem.price, _nftPrice, 'Nft price is not correct');
@@ -56,7 +56,7 @@ contract('NftMarket', (accounts) => {
     });
   });
 
-  describe('Buy NFT', () => {
+  describe('Buy NFTMeta', () => {
     before(async () => {
       await _contract.buyNft(1, {
         from: accounts[1],
@@ -96,22 +96,22 @@ contract('NftMarket', (accounts) => {
       assert.equal(totalSupply.toNumber(), 2, 'Total supply of token is not correct');
     });
 
-    it('should be able to retreive NFT by index', async () => {
+    it('should be able to retreive NFTMeta by index', async () => {
       const nftId1 = await _contract.tokenByIndex(0);
       const nftId2 = await _contract.tokenByIndex(1);
 
-      assert.equal(nftId1.toNumber(), 1, 'NFT id is wrong');
-      assert.equal(nftId2.toNumber(), 2, 'NFT id is wrong');
+      assert.equal(nftId1.toNumber(), 1, 'NFTMeta id is wrong');
+      assert.equal(nftId2.toNumber(), 2, 'NFTMeta id is wrong');
     });
 
-    it('should have one listed NFT', async () => {
+    it('should have one listed NFTMeta', async () => {
       const allNfts = await _contract.getAllNftsOnSale();
-      assert.equal(allNfts[0].tokenId, 2, 'NFT has a wrong id');
+      assert.equal(allNfts[0].tokenId, 2, 'NFTMeta has a wrong id');
     });
 
-    it('account[1] should have one owned NFT', async () => {
+    it('account[1] should have one owned NFTMeta', async () => {
       const ownedNfts = await _contract.getOwnedNfts({ from: accounts[1] });
-      assert.equal(ownedNfts[0].tokenId, 1, 'NFT has a wrong id');
+      assert.equal(ownedNfts[0].tokenId, 1, 'NFTMeta has a wrong id');
     });
   });
 

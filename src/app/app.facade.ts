@@ -5,6 +5,7 @@ import { Web3Service } from '@common/web3/services/web3.service';
 import { Observable, combineLatestWith, tap, filter } from 'rxjs';
 import { Address } from '@common/web3/models/address.model';
 import { Router } from '@angular/router';
+import { Contract } from 'ethers';
 
 @Injectable({ providedIn: 'root' })
 export class AppFacade {
@@ -28,5 +29,9 @@ export class AppFacade {
 
   public onChainChanged$(): Observable<unknown> {
     return this.web3Service.onChainChanged$();
+  }
+
+  public getContract$(): Observable<Readonly<Contract> | null> {
+    return this.web3Service.contract$;
   }
 }

@@ -1,0 +1,11 @@
+<div class="fixed h-[.25rem] top-0 left-0 right-0 overflow-hidden">
+  <p-progressBar *ngIf="isLoading$ | async" mode="indeterminate" class="h-full"></p-progressBar>
+</div>
+
+<nft-navbar></nft-navbar>
+<main class="max-w-screen-xl px-3 mx-auto main-content">
+  <router-outlet></router-outlet>
+</main>
+<nft-footer></nft-footer>
+
+<p-toast position="bottom-center"></p-toast>

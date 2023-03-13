@@ -1,4 +1,6 @@
+import { Address } from '@common/web3/models/address.model';
+
 export interface GetMetamaskStatePayload {
-  address: string | null;
+  address: Address;
   isMetamaskInstalled: boolean;
 }

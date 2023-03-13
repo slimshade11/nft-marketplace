@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NFT } from '@home/models/nft.model';
+import { NFTMeta } from '@common/web3/models/nft-meta.model';
 import { HomeService } from '@home/services/home.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError, of } from 'rxjs';
@@ -12,7 +12,7 @@ export class HomeEffects {
       ofType(HomeActions.getNftList),
       switchMap(() => {
         return this.homeService.getNftList$().pipe(
-          map((nftList: NFT[]) => {
+          map((nftList: NFTMeta[]) => {
             return HomeActions.getNftListSuccess({ nftList });
           }),
           catchError(() => {

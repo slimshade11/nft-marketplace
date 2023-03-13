@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardModule } from 'primeng/card';
-import { NFT } from '@home/models/nft.model';
+import { NFTMeta } from '@common/web3/models/nft-meta.model';
 
 import { NftItemComponent } from './nft-item.component';
 
@@ -14,7 +14,7 @@ describe('NftItemComponent', () => {
       imports: [CardModule],
     }).compileComponents();
 
-    const nft: NFT = { description: '', image: 'string', name: 'string', attributes: [] };
+    const nft: NFTMeta = { description: '', image: 'string', name: 'string', attributes: [] };
 
     fixture = TestBed.createComponent(NftItemComponent);
     component = fixture.componentInstance;

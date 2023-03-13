@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { NFT } from '@home/models/nft.model';
+import { NFTMeta } from '@common/web3/models/nft-meta.model';
 import { ActivatedRoute, Data } from '@angular/router';
 
 @Component({
@@ -14,11 +14,11 @@ import { ActivatedRoute, Data } from '@angular/router';
   `,
 })
 export class NftListComponent {
-  public nftList$: Observable<NFT[]> = this.getNftList$();
+  public nftList$: Observable<NFTMeta[]> = this.getNftList$();
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
-  private getNftList$(): Observable<NFT[]> {
-    return this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
+  private getNftList$(): Observable<NFTMeta[]> {
+    return this.activatedRoute.data.pipe(map(({ nftList }: Data): NFTMeta[] => nftList));
   }
 }

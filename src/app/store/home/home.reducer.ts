@@ -1,11 +1,11 @@
 import { HomeActions } from '@store/home';
-import { NFT } from '@home/models/nft.model';
+import { NFTMeta } from '@common/web3/models/nft-meta.model';
 import { createReducer, on } from '@ngrx/store';
 
 export const FeatureKey = 'home';
 
 export interface State {
-  nftList: NFT[] | null;
+  nftList: NFTMeta[] | null;
   isLoading: boolean;
 }
 

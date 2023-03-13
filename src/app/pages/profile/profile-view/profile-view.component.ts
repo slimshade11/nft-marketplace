@@ -1,7 +1,7 @@
 import { ActivatedRoute, Data } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Component } from '@angular/core';
-import { NFT } from '@home/models/nft.model';
+import { NFTMeta } from '@common/web3/models/nft-meta.model';
 
 @Component({
   selector: 'nft-profile-view',
@@ -9,11 +9,11 @@ import { NFT } from '@home/models/nft.model';
   styleUrls: ['./profile-view.component.scss'],
 })
 export class ProfileViewComponent {
-  public nftList$: Observable<NFT[]> = this.getNftList$();
+  public nftList$: Observable<NFTMeta[]> = this.getNftList$();
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
-  private getNftList$(): Observable<NFT[]> {
-    return this.activatedRoute.data.pipe(map(({ nftList }: Data): NFT[] => nftList));
+  private getNftList$(): Observable<NFTMeta[]> {
+    return this.activatedRoute.data.pipe(map(({ nftList }: Data): NFTMeta[] => nftList));
   }
 }

@@ -16,6 +16,7 @@ import { Address } from '@common/web3/models/address.model';
 import { takeUntil } from 'rxjs';
 
 const NavbarImports: any[] = [CommonModule, MenubarModule, WalletBarComponent, NetworkWidgetComponent, FormsModule, ToggleButtonModule];
+
 @Component({
   selector: 'nft-navbar',
   standalone: true,
